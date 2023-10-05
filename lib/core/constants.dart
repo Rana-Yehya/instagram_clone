@@ -11,6 +11,7 @@ class Constants {
   static const userID = 'userID';
   static const postID = 'postID';
   static const comment = 'comment';
+  static const commentID = 'commentID';
   static const createdAt = 'created_at';
   static const date = 'date';
   static const displayName = 'display_name';

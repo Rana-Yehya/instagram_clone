@@ -20,11 +20,13 @@ class PostsGridView extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) => PostThumbnailView(
         post: posts.elementAt(index),
         onTapPressed: () {
-          /*  
+          /*
           context.pushRoute(
+            
             PostDetailsRoute(
               postEntity: posts.elementAt(index),
             ),
+            
           );
           */
         },

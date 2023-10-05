@@ -5,6 +5,8 @@ import 'package:instagram_clone/core/entity/unique_id.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/image_or_video.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_settings.dart';
+import 'package:instagram_clone/features/instagram_clone/infrastructure/models/likes/likes_entity_payload.dart';
+import 'package:instagram_clone/features/instagram_clone/infrastructure/models/server_timestamp_converter.dart';
 part 'post_entity_payload.freezed.dart';
 part 'post_entity_payload.g.dart';
 
@@ -52,16 +54,11 @@ abstract class PostEntityPayload implements _$PostEntityPayload {
       );
 
   PostEntity toDomain() {
-    //print("result");
-    // print(serverTimestampToJson.toString());
-    final time = ServerTimestampConverter.fromJson(createdAt);
-    //print("time");
-    //print(time);
     return PostEntity(
       postID: postID!,
       userID: UniqueId.fromUnique(userID),
       message: message,
-      createdAt: time,
+      createdAt: ServerTimestampConverter.fromJson(createdAt),
       thumbnailURL: thumbnailURL,
       fileURL: fileURL,
       imageOrVideo: imageOrVideo ? ImageOrVideo.image : ImageOrVideo.video,
@@ -82,12 +79,3 @@ abstract class PostEntityPayload implements _$PostEntityPayload {
   }
 }
 
-class ServerTimestampConverter {
-  static DateTime fromJson(Object json) {
-    return (json as Timestamp).toDate();
-  }
-
-  static Object toJson(Object fieldValue) {
-    return fieldValue as FieldValue;
-  }
-}

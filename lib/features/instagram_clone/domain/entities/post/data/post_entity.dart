@@ -36,6 +36,7 @@ abstract class PostEntity implements _$PostEntity {
         originalFileStorageID: '',
         postSettings: <PostSetting, bool>{},
       );
+      
   bool get allowsLikes => postSettings[PostSetting.allowLikes] ?? false;
   bool get allowsComments => postSettings[PostSetting.allowComments] ?? false;
 }

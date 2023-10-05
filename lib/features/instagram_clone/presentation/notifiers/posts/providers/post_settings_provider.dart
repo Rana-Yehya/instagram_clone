@@ -4,5 +4,5 @@ import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/
 
 final postSettingsProvider =
     StateNotifierProvider<PostSettingsNotifier, Map<PostSetting, bool>>(
-  (ref) => PostSettingsNotifier(),
+  (_) => PostSettingsNotifier(),
 );
