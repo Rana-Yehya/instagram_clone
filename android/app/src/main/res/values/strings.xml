@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">675366214444142</string>
+    <string name="fb_login_protocol_scheme">fb675366214444142</string>
+    <string name="facebook_client_token">8f9b7c9407d5f768c06e666a7dbbf20e</string>
+    <string name="app_name">instagram_clone</string>
+</resources>
+
+

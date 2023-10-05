@@ -1,0 +1,4 @@
+enum ImageOrVideo {
+  image,
+  video;
+}
