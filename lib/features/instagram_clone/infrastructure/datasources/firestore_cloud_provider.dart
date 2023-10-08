@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -8,7 +10,8 @@ import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_s
 import 'package:instagram_clone/features/instagram_clone/domain/entities/comment/comment_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/likes/likes_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
-import 'package:instagram_clone/features/instagram_clone/domain/entities/requiest_post_and_comments/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/repository/cloud_service.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/models/auth/user_auth_payload.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/models/comment/comment_entity_payload.dart';
@@ -46,17 +49,17 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }) async {
     Map<String, dynamic> json = <String, dynamic>{};
     try {
-      FirebaseFirestore.instance
+      await FirebaseFirestore.instance
           .collection(Constants.users)
           .where(Constants.userID, isEqualTo: userID.getOrCrash())
-          .limit(1)
-          .snapshots()
-          .listen((snapshot) {
+          .get()
+          .then((snapshot) {
         if (snapshot.docs.isNotEmpty) {
           final doc = snapshot.docs.first;
           json = doc.data();
         }
       });
+
       if (json != <String, dynamic>{}) {
         final userAuthPayload = UserAuthPayload.fromJson(
           json,
@@ -142,7 +145,7 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
-  Future<Either<CloudStorageFailure, Unit>> saveUserOnPostLikesOrDislike(
+  Future<Either<CloudStorageFailure, bool>> saveUserOnPostLikesOrDislike(
       {required LikesEntity likesEntity}) async {
     try {
       final document = FirebaseFirestore.instance
@@ -153,26 +156,27 @@ class FirebaseFirestoreProvider extends FirestoreService {
           )
           .where(
             Constants.userID,
-            isEqualTo: likesEntity.likedBy,
+            isEqualTo: likesEntity.likedBy.getOrCrash(),
           )
           .get();
       final hasLiked =
-          await document.then((snapshot) => snapshot.docs.isNotEmpty);
+          await document.then((snapshots) => snapshots.docs.isNotEmpty);
+
       if (hasLiked) {
         await document.then((snapshot) async {
           for (final doc in snapshot.docs) {
             await doc.reference.delete();
-            return true;
           }
         });
+        return right(false);
       } else {
-        final likesEntityDTO = LikestEntityPayload.fromDomain(likesEntity);
+        final likesEntityDTO = LikesEntityPayload.fromDomain(likesEntity);
 
         await FirebaseFirestore.instance.collection(Constants.likes).add(
               likesEntityDTO.toJson(),
             );
+        return right(true);
       }
-      return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());
@@ -190,21 +194,15 @@ class FirebaseFirestoreProvider extends FirestoreService {
   Future<Either<CloudStorageFailure, int>> getUserPostLikes(
       {required String postID}) async {
     try {
-      int? numberOfCounts;
+      //int numberOfCounts = 0;
       final document = FirebaseFirestore.instance.collection(Constants.likes);
 
-      await document
+      int numberOfCounts = await document
           .where(Constants.postID, isEqualTo: postID)
-          .get()
-          .then((value) {
-        numberOfCounts = value.docs.length;
-      });
+          .snapshots()
+          .length;
 
-      if (numberOfCounts == null) {
-        return right(0);
-      } else {
-        return right(numberOfCounts!);
-      }
+      return right(numberOfCounts);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());
@@ -219,23 +217,30 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
-  Future<Either<CloudStorageFailure, bool>> hasUserLikedPost({
+  Either<CloudStorageFailure, Stream<bool>> hasUserLikedPost({
     required LikesEntity likesEntity,
-  }) async {
+  }) {
+    StreamController<bool> controller = StreamController<bool>();
     try {
-      final result = await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection(Constants.likes)
           .where(
             Constants.postID,
             isEqualTo: likesEntity.postID,
           )
-          .where(Constants.userID, isEqualTo: likesEntity.likedBy.getOrCrash())
-          .get();
-      if (result.docs.isNotEmpty) {
-        return right(true);
-      } else {
-        return right(false);
-      }
+          .where(
+            Constants.userID,
+            isEqualTo: likesEntity.likedBy.getOrCrash(),
+          )
+          .snapshots()
+          .listen((snapshot) {
+        if (snapshot.docs.isNotEmpty) {
+          controller.add(true);
+        } else {
+          controller.add(false);
+        }
+      });
+      return right(controller.stream);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());
@@ -364,6 +369,77 @@ class FirebaseFirestoreProvider extends FirestoreService {
         await post.reference.delete();
       }
       return right(unit);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('object-not-found')) {
+        return left(const CloudStorageFailure.objectNotFound());
+      } else if (e.message!.contains('unauthorized')) {
+        return left(const CloudStorageFailure.unauthorized());
+      } else if (e.message!.contains('canceled')) {
+        return left(const CloudStorageFailure.cancelledByUser());
+      } else {
+        return left(const CloudStorageFailure.unknown());
+      }
+    }
+  }
+
+  @override
+  Future<Either<CloudStorageFailure, PostCommentsEntity>> getUserPostDetails(
+      {required PostDetailsEntity postDetailsEntity}) async {
+    try {
+      PostEntity? postEntity;
+      Iterable<CommentEntity>? commentEntityList;
+      final postDoc = await FirebaseFirestore.instance
+          .collection(Constants.posts)
+          .where(FieldPath.documentId, isEqualTo: postDetailsEntity.postID)
+          .limit(1)
+          .get();
+
+      final docs = postDoc.docs;
+      final areDocsHavePendingWrites = docs.first.metadata.hasPendingWrites;
+      if (docs.isEmpty || areDocsHavePendingWrites) {
+        postEntity = null;
+        commentEntityList = null;
+      } else {
+        final postEntityDTO = PostEntityPayload.fromJson(docs.first.data());
+        postEntity = postEntityDTO.toDomain();
+
+        final commentsCollection =
+            FirebaseFirestore.instance.collection(Constants.comments);
+        final snapshot = await commentsCollection.count().get();
+        if (snapshot.count != 0) {
+          final commentsDocs = commentsCollection
+              .where(
+                Constants.postID,
+                isEqualTo: postDetailsEntity.postID,
+              )
+              .orderBy(
+                Constants.createdAt,
+                descending: true,
+              );
+          final limitedComments = postDetailsEntity.limit != null
+              ? commentsDocs.limit(postDetailsEntity.limit!)
+              : commentsDocs;
+          print(limitedComments);
+          final doesPostHaveComments =
+              await limitedComments.count().get(); // .parameters.length;
+          print(doesPostHaveComments);
+
+          if (doesPostHaveComments != 0) {
+            final comments = await limitedComments.get();
+            commentEntityList = comments.docs.map((comment) {
+              final commentEntity = CommentEntityPayload.fromFirestore(comment);
+              return commentEntity.toDomain();
+            });
+          }
+        }
+        print(snapshot);
+      }
+      return (right(
+        PostCommentsEntity(
+          postEntity: postEntity ?? PostEntity.empty(),
+          commentEntityList: commentEntityList ?? const Iterable.empty(),
+        ),
+      ));
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());

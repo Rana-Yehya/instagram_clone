@@ -49,13 +49,20 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
       _,
       thumbnailStorageRequest,
     ) async {
+      print("originalFileStorageID");
+      print(thumbnailStorageRequest?.originalFileStorageID);
+      print("originalFileURLRef");
+      print(thumbnailStorageRequest?.originalFileURLRef);
+      print("thumbStorageID");
+      print(thumbnailStorageRequest?.thumbStorageID);
+      print("thumbnailURLRef");
+      print(thumbnailStorageRequest?.thumbnailURLRef);
       //print('The counter changed $newValue');
       await ref.read(imageUploaderProvider.notifier).uploadToCloud(
             imageOrVideo: widget.imageOrVideo,
             message: postTextController.text,
             postSettings: postSettings,
             userID: userID!,
-            fileName: '',
             thumbnailStorageRequest: thumbnailStorageRequest!,
             thumbnailAspectRatio: thumbnailAspectRatio,
           );
@@ -63,8 +70,6 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
         context.popRoute();
       }
     });
-
-    final thumbnailStorageRequest = ref.watch(thumbnailStorageRequestProvider);
 
     useEffect(() {
       void listener() {
@@ -162,7 +167,6 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
             message: message,
             postSettings: postSettings,
             userID: userID,
-            fileName: '',
             thumbnailStorageRequest: thumbnailStorageRequest,
             thumbnailAspectRatio: thumbnailAspectRatio,
           );

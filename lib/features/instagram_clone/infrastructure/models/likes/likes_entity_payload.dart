@@ -8,22 +8,23 @@ part 'likes_entity_payload.freezed.dart';
 part 'likes_entity_payload.g.dart';
 
 @freezed
-abstract class LikestEntityPayload implements _$LikestEntityPayload {
-  const LikestEntityPayload._();
-  const factory LikestEntityPayload({
+abstract class LikesEntityPayload implements _$LikesEntityPayload {
+  const LikesEntityPayload._();
+  const factory LikesEntityPayload({
     @JsonKey(name: Constants.postID) required String postID,
     @JsonKey(name: Constants.userID) required String userID,
+    @JsonKey(name: Constants.createdAt)
     @JsonKey(
       fromJson: ServerTimestampConverter.fromJson,
       toJson: ServerTimestampConverter.toJson,
     )
     required Object createdAt,
-  }) = _LikestEntityPayload;
+  }) = _LikesEntityPayload;
 
-  factory LikestEntityPayload.fromDomain(LikesEntity likesEntity) =>
-      LikestEntityPayload(
+  factory LikesEntityPayload.fromDomain(LikesEntity likesEntity) =>
+      LikesEntityPayload(
         postID: likesEntity.postID,
-        userID: likesEntity.likedBy.value.toString(),
+        userID: likesEntity.likedBy.getOrCrash(),
         createdAt: FieldValue.serverTimestamp(),
       );
 
@@ -34,11 +35,11 @@ abstract class LikestEntityPayload implements _$LikestEntityPayload {
     );
   }
 
-  factory LikestEntityPayload.fromJson(Map<String, dynamic> json) =>
-      _$LikestEntityPayloadFromJson(json);
+  factory LikesEntityPayload.fromJson(Map<String, dynamic> json) =>
+      _$LikesEntityPayloadFromJson(json);
 
-  factory LikestEntityPayload.fromFirestore(DocumentSnapshot doc) {
-    return LikestEntityPayload.fromJson(doc.data()! as Map<String, dynamic>)
+  factory LikesEntityPayload.fromFirestore(DocumentSnapshot doc) {
+    return LikesEntityPayload.fromJson(doc.data()! as Map<String, dynamic>)
         .copyWith(postID: doc.id);
   }
 }

@@ -38,6 +38,26 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainPage(),
       );
     },
+    PostCommentRoute.name: (routeData) {
+      final args = routeData.argsAs<PostCommentRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PostCommentPage(
+          key: args.key,
+          postID: args.postID,
+        ),
+      );
+    },
+    PostDetailsRoute.name: (routeData) {
+      final args = routeData.argsAs<PostDetailsRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: PostDetailsPage(
+          key: args.key,
+          postEntity: args.postEntity,
+        ),
+      );
+    },
     SignInRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -122,6 +142,82 @@ class MainRoute extends PageRouteInfo<void> {
   static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [PostCommentPage]
+class PostCommentRoute extends PageRouteInfo<PostCommentRouteArgs> {
+  PostCommentRoute({
+    Key? key,
+    required String postID,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PostCommentRoute.name,
+          args: PostCommentRouteArgs(
+            key: key,
+            postID: postID,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PostCommentRoute';
+
+  static const PageInfo<PostCommentRouteArgs> page =
+      PageInfo<PostCommentRouteArgs>(name);
+}
+
+class PostCommentRouteArgs {
+  const PostCommentRouteArgs({
+    this.key,
+    required this.postID,
+  });
+
+  final Key? key;
+
+  final String postID;
+
+  @override
+  String toString() {
+    return 'PostCommentRouteArgs{key: $key, postID: $postID}';
+  }
+}
+
+/// generated route for
+/// [PostDetailsPage]
+class PostDetailsRoute extends PageRouteInfo<PostDetailsRouteArgs> {
+  PostDetailsRoute({
+    Key? key,
+    required PostEntity postEntity,
+    List<PageRouteInfo>? children,
+  }) : super(
+          PostDetailsRoute.name,
+          args: PostDetailsRouteArgs(
+            key: key,
+            postEntity: postEntity,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'PostDetailsRoute';
+
+  static const PageInfo<PostDetailsRouteArgs> page =
+      PageInfo<PostDetailsRouteArgs>(name);
+}
+
+class PostDetailsRouteArgs {
+  const PostDetailsRouteArgs({
+    this.key,
+    required this.postEntity,
+  });
+
+  final Key? key;
+
+  final PostEntity postEntity;
+
+  @override
+  String toString() {
+    return 'PostDetailsRouteArgs{key: $key, postEntity: $postEntity}';
+  }
 }
 
 /// generated route for

@@ -10,7 +10,6 @@ import 'package:instagram_clone/features/instagram_clone/infrastructure/helpers/
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/auth_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/posts/providers/post_settings_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/empty_content_with_text_animation.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/home_view.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/tabs/user_info_view.dart';
 
 @RoutePage()
@@ -102,7 +101,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
         body: TabBarView(
           children: [
-            UserInfoView(),
+            const UserInfoView(),
             const EmptyContentWithTextAnimation(text: Constants.youHaveNoPosts),
             Container(color: Colors.brown),
           ],

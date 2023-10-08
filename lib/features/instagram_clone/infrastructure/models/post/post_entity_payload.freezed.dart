@@ -20,7 +20,7 @@ PostEntityPayload _$PostEntityPayloadFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$PostEntityPayload {
-  @JsonKey(ignore: true, name: Constants.postID)
+  @JsonKey(name: Constants.postID)
   String? get postID => throw _privateConstructorUsedError;
   @JsonKey(name: Constants.createdAt)
   @JsonKey(
@@ -61,7 +61,7 @@ abstract class $PostEntityPayloadCopyWith<$Res> {
       _$PostEntityPayloadCopyWithImpl<$Res, PostEntityPayload>;
   @useResult
   $Res call(
-      {@JsonKey(ignore: true, name: Constants.postID) String? postID,
+      {@JsonKey(name: Constants.postID) String? postID,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
@@ -166,7 +166,7 @@ abstract class _$$_PostEntityPayloadCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(ignore: true, name: Constants.postID) String? postID,
+      {@JsonKey(name: Constants.postID) String? postID,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
@@ -264,7 +264,7 @@ class __$$_PostEntityPayloadCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PostEntityPayload extends _PostEntityPayload {
   const _$_PostEntityPayload(
-      {@JsonKey(ignore: true, name: Constants.postID) this.postID,
+      {@JsonKey(name: Constants.postID) this.postID,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
@@ -290,7 +290,7 @@ class _$_PostEntityPayload extends _PostEntityPayload {
       _$$_PostEntityPayloadFromJson(json);
 
   @override
-  @JsonKey(ignore: true, name: Constants.postID)
+  @JsonKey(name: Constants.postID)
   final String? postID;
   @override
   @JsonKey(name: Constants.createdAt)
@@ -399,7 +399,7 @@ class _$_PostEntityPayload extends _PostEntityPayload {
 
 abstract class _PostEntityPayload extends PostEntityPayload {
   const factory _PostEntityPayload(
-      {@JsonKey(ignore: true, name: Constants.postID) final String? postID,
+      {@JsonKey(name: Constants.postID) final String? postID,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
@@ -425,7 +425,7 @@ abstract class _PostEntityPayload extends PostEntityPayload {
       _$_PostEntityPayload.fromJson;
 
   @override
-  @JsonKey(ignore: true, name: Constants.postID)
+  @JsonKey(name: Constants.postID)
   String? get postID;
   @override
   @JsonKey(name: Constants.createdAt)

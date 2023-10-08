@@ -5,7 +5,6 @@ import 'package:instagram_clone/core/entity/unique_id.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/image_or_video.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_settings.dart';
-import 'package:instagram_clone/features/instagram_clone/infrastructure/models/likes/likes_entity_payload.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/models/server_timestamp_converter.dart';
 part 'post_entity_payload.freezed.dart';
 part 'post_entity_payload.g.dart';
@@ -14,7 +13,7 @@ part 'post_entity_payload.g.dart';
 abstract class PostEntityPayload implements _$PostEntityPayload {
   const PostEntityPayload._();
   const factory PostEntityPayload({
-    @JsonKey(ignore: true, name: Constants.postID) String? postID,
+    @JsonKey(name: Constants.postID) String? postID,
     @JsonKey(name: Constants.createdAt)
     @JsonKey(
       fromJson: ServerTimestampConverter.fromJson,

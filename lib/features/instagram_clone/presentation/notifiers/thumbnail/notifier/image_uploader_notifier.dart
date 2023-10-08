@@ -8,12 +8,12 @@ import 'package:instagram_clone/features/instagram_clone/domain/repository/cloud
 import 'package:instagram_clone/features/instagram_clone/infrastructure/datasources/firestore_cloud_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/models/thumbnail/thumbnail_storage_payload.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/thumbnail/state/image_uploader_state.dart';
+import 'package:uuid/uuid.dart';
 
 class ImageUploaderNotifier extends StateNotifier<ImageUploaderState> {
   final FirestoreService cloudService = FirebaseFirestoreProvider();
   ImageUploaderNotifier() : super(ImageUploaderState.unknown());
   Future<void> uploadToCloud({
-    required String fileName,
     required ImageOrVideo imageOrVideo,
     required ThumbnailStoragePayload thumbnailStorageRequest,
     required double thumbnailAspectRatio,
@@ -22,23 +22,25 @@ class ImageUploaderNotifier extends StateNotifier<ImageUploaderState> {
     required UniqueId userID,
   }) async {
     state = state.copiedWithIsLoading(true);
-
+    final postID = const Uuid().v1();
     final postEntity = PostEntity(
       userID: userID,
       message: message,
       thumbnailURL: thumbnailStorageRequest.thumbnailURLRef,
       fileURL: thumbnailStorageRequest.originalFileURLRef,
       imageOrVideo: imageOrVideo,
-      fileName: fileName,
+      fileName: thumbnailStorageRequest.thumbnailFileUID,
       aspectRatio: thumbnailAspectRatio,
       thumbnailStorageID: thumbnailStorageRequest.thumbStorageID,
       originalFileStorageID: thumbnailStorageRequest.originalFileStorageID,
       postSettings: postSettings,
-      postID: '',
+      postID: postID,
       createdAt: null,
     );
 
-    final result = await cloudService.saveUserPost(postEntity: postEntity);
+    final result = await cloudService.saveUserPost(
+      postEntity: postEntity,
+    );
 
     state = ImageUploaderState(
       authFailureOrSuccessOption: some(result),

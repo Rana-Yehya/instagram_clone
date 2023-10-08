@@ -47,9 +47,9 @@ class CompactCommentTile extends ConsumerWidget {
       return const CircularProgressIndicator();
     });
     */
-    return userInfo.when(data: (posts) {
+    return userInfo.when(data: (commentsEither) {
       Widget? returnedWidget;
-      posts.fold((failure) {
+      commentsEither.fold((failure) {
         FlushbarHelper.createError(
           message: failure.map(
             unknown: (Unknown value) => 'Unknown',

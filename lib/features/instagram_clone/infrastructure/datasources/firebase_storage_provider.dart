@@ -77,13 +77,12 @@ class FirebaseStorageProvider extends StorageService {
       final thumbUploadTask = await thumbnailRef.putData(thumbnailUint8List);
 
       final originalFileUploadTask = await originalFileRef.putFile(fileName);
-
       return right(ThumbnailStoragePayload(
+        thumbnailFileUID: thumbnailFileUID,
         thumbStorageID: thumbUploadTask.ref.name,
-        originalFileStorageID: originalFileUploadTask.ref.name, 
-        thumbnailURLRef: await thumbnailRef.getDownloadURL(), 
-        originalFileURLRef: await originalFileRef.getDownloadURL(), 
-        
+        originalFileStorageID: originalFileUploadTask.ref.name,
+        thumbnailURLRef: await thumbnailRef.getDownloadURL(),
+        originalFileURLRef: await originalFileRef.getDownloadURL(),
       ));
     } on FirebaseException catch (e) {
       if (e.message!.contains('PERMISSION-DEINED')) {

@@ -20,7 +20,7 @@ CommentEntityPayload _$CommentEntityPayloadFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CommentEntityPayload {
-  @JsonKey(ignore: true, name: Constants.commentID)
+  @JsonKey(name: Constants.commentID)
   String? get commentID => throw _privateConstructorUsedError;
   @JsonKey(name: Constants.comment)
   String get comment => throw _privateConstructorUsedError;
@@ -47,7 +47,7 @@ abstract class $CommentEntityPayloadCopyWith<$Res> {
       _$CommentEntityPayloadCopyWithImpl<$Res, CommentEntityPayload>;
   @useResult
   $Res call(
-      {@JsonKey(ignore: true, name: Constants.commentID) String? commentID,
+      {@JsonKey(name: Constants.commentID) String? commentID,
       @JsonKey(name: Constants.comment) String comment,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
@@ -109,7 +109,7 @@ abstract class _$$_CommentEntityPayloadCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(ignore: true, name: Constants.commentID) String? commentID,
+      {@JsonKey(name: Constants.commentID) String? commentID,
       @JsonKey(name: Constants.comment) String comment,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
@@ -163,7 +163,7 @@ class __$$_CommentEntityPayloadCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CommentEntityPayload extends _CommentEntityPayload {
   const _$_CommentEntityPayload(
-      {@JsonKey(ignore: true, name: Constants.commentID) this.commentID,
+      {@JsonKey(name: Constants.commentID) this.commentID,
       @JsonKey(name: Constants.comment) required this.comment,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
@@ -178,7 +178,7 @@ class _$_CommentEntityPayload extends _CommentEntityPayload {
       _$$_CommentEntityPayloadFromJson(json);
 
   @override
-  @JsonKey(ignore: true, name: Constants.commentID)
+  @JsonKey(name: Constants.commentID)
   final String? commentID;
   @override
   @JsonKey(name: Constants.comment)
@@ -236,8 +236,7 @@ class _$_CommentEntityPayload extends _CommentEntityPayload {
 
 abstract class _CommentEntityPayload extends CommentEntityPayload {
   const factory _CommentEntityPayload(
-          {@JsonKey(ignore: true, name: Constants.commentID)
-          final String? commentID,
+          {@JsonKey(name: Constants.commentID) final String? commentID,
           @JsonKey(name: Constants.comment) required final String comment,
           @JsonKey(name: Constants.createdAt)
           @JsonKey(
@@ -253,7 +252,7 @@ abstract class _CommentEntityPayload extends CommentEntityPayload {
       _$_CommentEntityPayload.fromJson;
 
   @override
-  @JsonKey(ignore: true, name: Constants.commentID)
+  @JsonKey(name: Constants.commentID)
   String? get commentID;
   @override
   @JsonKey(name: Constants.comment)

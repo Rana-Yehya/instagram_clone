@@ -8,6 +8,7 @@ part of 'post_entity_payload.dart';
 
 _$_PostEntityPayload _$$_PostEntityPayloadFromJson(Map<String, dynamic> json) =>
     _$_PostEntityPayload(
+      postID: json['postID'] as String?,
       createdAt: json['created_at'] as Object,
       userID: json['userID'] as String,
       message: json['message'] as String,
@@ -26,6 +27,7 @@ _$_PostEntityPayload _$$_PostEntityPayloadFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_PostEntityPayloadToJson(
         _$_PostEntityPayload instance) =>
     <String, dynamic>{
+      'postID': instance.postID,
       'created_at': instance.createdAt,
       'userID': instance.userID,
       'message': instance.message,

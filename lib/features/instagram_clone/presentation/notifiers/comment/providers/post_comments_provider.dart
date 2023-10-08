@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_storage_failures/cloud_storage_failure.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/comment/comment_entity.dart';
-import 'package:instagram_clone/features/instagram_clone/domain/entities/requiest_post_and_comments/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details/post_details_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/repository/cloud_service.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/datasources/firestore_cloud_provider.dart';
 

@@ -6,7 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/core/constants.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_storage_failures/cloud_storage_failure.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/comment/comment_entity.dart';
-import 'package:instagram_clone/features/instagram_clone/domain/entities/requiest_post_and_comments/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details/post_details_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/auth_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/comment/providers/post_comments_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/comment/providers/send_and_delete_comment_provider.dart';

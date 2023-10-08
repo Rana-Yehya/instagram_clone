@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
 import 'package:instagram_clone/core/entity/unique_id.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/auth/data/user_auth_entity.dart';
@@ -5,7 +7,8 @@ import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_s
 import 'package:instagram_clone/features/instagram_clone/domain/entities/comment/comment_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/likes/likes_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
-import 'package:instagram_clone/features/instagram_clone/domain/entities/requiest_post_and_comments/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details_entity.dart';
 
 abstract class FirestoreService {
   Future<Either<CloudStorageFailure, Unit>> saveUserData({
@@ -20,13 +23,13 @@ abstract class FirestoreService {
   Future<Either<CloudStorageFailure, Unit>> saveUserPost({
     required PostEntity postEntity,
   });
-  Future<Either<CloudStorageFailure, Unit>> saveUserOnPostLikesOrDislike({
+  Future<Either<CloudStorageFailure, bool>> saveUserOnPostLikesOrDislike({
     required LikesEntity likesEntity,
   });
   Future<Either<CloudStorageFailure, int>> getUserPostLikes({
     required String postID,
   });
-  Future<Either<CloudStorageFailure, bool>> hasUserLikedPost({
+  Either<CloudStorageFailure, Stream<bool>> hasUserLikedPost({
     required LikesEntity likesEntity,
   });
   Future<Either<CloudStorageFailure, Unit>> savePostComment({
@@ -42,7 +45,8 @@ abstract class FirestoreService {
   Future<Either<CloudStorageFailure, Unit>> deleteUserPost({
     required String postID,
   });
-
+  Future<Either<CloudStorageFailure, PostCommentsEntity>> getUserPostDetails(
+      {required PostDetailsEntity postDetailsEntity});
   /*
   Future<bool> saveUserPost({
     required String postID,

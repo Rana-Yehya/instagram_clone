@@ -14,16 +14,17 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-LikestEntityPayload _$LikestEntityPayloadFromJson(Map<String, dynamic> json) {
-  return _LikestEntityPayload.fromJson(json);
+LikesEntityPayload _$LikesEntityPayloadFromJson(Map<String, dynamic> json) {
+  return _LikesEntityPayload.fromJson(json);
 }
 
 /// @nodoc
-mixin _$LikestEntityPayload {
+mixin _$LikesEntityPayload {
   @JsonKey(name: Constants.postID)
   String get postID => throw _privateConstructorUsedError;
   @JsonKey(name: Constants.userID)
   String get userID => throw _privateConstructorUsedError;
+  @JsonKey(name: Constants.createdAt)
   @JsonKey(
       fromJson: ServerTimestampConverter.fromJson,
       toJson: ServerTimestampConverter.toJson)
@@ -31,19 +32,20 @@ mixin _$LikestEntityPayload {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LikestEntityPayloadCopyWith<LikestEntityPayload> get copyWith =>
+  $LikesEntityPayloadCopyWith<LikesEntityPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LikestEntityPayloadCopyWith<$Res> {
-  factory $LikestEntityPayloadCopyWith(
-          LikestEntityPayload value, $Res Function(LikestEntityPayload) then) =
-      _$LikestEntityPayloadCopyWithImpl<$Res, LikestEntityPayload>;
+abstract class $LikesEntityPayloadCopyWith<$Res> {
+  factory $LikesEntityPayloadCopyWith(
+          LikesEntityPayload value, $Res Function(LikesEntityPayload) then) =
+      _$LikesEntityPayloadCopyWithImpl<$Res, LikesEntityPayload>;
   @useResult
   $Res call(
       {@JsonKey(name: Constants.postID) String postID,
       @JsonKey(name: Constants.userID) String userID,
+      @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
           toJson: ServerTimestampConverter.toJson)
@@ -51,9 +53,9 @@ abstract class $LikestEntityPayloadCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LikestEntityPayloadCopyWithImpl<$Res, $Val extends LikestEntityPayload>
-    implements $LikestEntityPayloadCopyWith<$Res> {
-  _$LikestEntityPayloadCopyWithImpl(this._value, this._then);
+class _$LikesEntityPayloadCopyWithImpl<$Res, $Val extends LikesEntityPayload>
+    implements $LikesEntityPayloadCopyWith<$Res> {
+  _$LikesEntityPayloadCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -82,16 +84,17 @@ class _$LikestEntityPayloadCopyWithImpl<$Res, $Val extends LikestEntityPayload>
 }
 
 /// @nodoc
-abstract class _$$_LikestEntityPayloadCopyWith<$Res>
-    implements $LikestEntityPayloadCopyWith<$Res> {
-  factory _$$_LikestEntityPayloadCopyWith(_$_LikestEntityPayload value,
-          $Res Function(_$_LikestEntityPayload) then) =
-      __$$_LikestEntityPayloadCopyWithImpl<$Res>;
+abstract class _$$_LikesEntityPayloadCopyWith<$Res>
+    implements $LikesEntityPayloadCopyWith<$Res> {
+  factory _$$_LikesEntityPayloadCopyWith(_$_LikesEntityPayload value,
+          $Res Function(_$_LikesEntityPayload) then) =
+      __$$_LikesEntityPayloadCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: Constants.postID) String postID,
       @JsonKey(name: Constants.userID) String userID,
+      @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
           toJson: ServerTimestampConverter.toJson)
@@ -99,11 +102,11 @@ abstract class _$$_LikestEntityPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LikestEntityPayloadCopyWithImpl<$Res>
-    extends _$LikestEntityPayloadCopyWithImpl<$Res, _$_LikestEntityPayload>
-    implements _$$_LikestEntityPayloadCopyWith<$Res> {
-  __$$_LikestEntityPayloadCopyWithImpl(_$_LikestEntityPayload _value,
-      $Res Function(_$_LikestEntityPayload) _then)
+class __$$_LikesEntityPayloadCopyWithImpl<$Res>
+    extends _$LikesEntityPayloadCopyWithImpl<$Res, _$_LikesEntityPayload>
+    implements _$$_LikesEntityPayloadCopyWith<$Res> {
+  __$$_LikesEntityPayloadCopyWithImpl(
+      _$_LikesEntityPayload _value, $Res Function(_$_LikesEntityPayload) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +116,7 @@ class __$$_LikestEntityPayloadCopyWithImpl<$Res>
     Object? userID = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_LikestEntityPayload(
+    return _then(_$_LikesEntityPayload(
       postID: null == postID
           ? _value.postID
           : postID // ignore: cast_nullable_to_non_nullable
@@ -129,18 +132,19 @@ class __$$_LikestEntityPayloadCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LikestEntityPayload extends _LikestEntityPayload {
-  const _$_LikestEntityPayload(
+class _$_LikesEntityPayload extends _LikesEntityPayload {
+  const _$_LikesEntityPayload(
       {@JsonKey(name: Constants.postID) required this.postID,
       @JsonKey(name: Constants.userID) required this.userID,
+      @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
           toJson: ServerTimestampConverter.toJson)
       required this.createdAt})
       : super._();
 
-  factory _$_LikestEntityPayload.fromJson(Map<String, dynamic> json) =>
-      _$$_LikestEntityPayloadFromJson(json);
+  factory _$_LikesEntityPayload.fromJson(Map<String, dynamic> json) =>
+      _$$_LikesEntityPayloadFromJson(json);
 
   @override
   @JsonKey(name: Constants.postID)
@@ -149,6 +153,7 @@ class _$_LikestEntityPayload extends _LikestEntityPayload {
   @JsonKey(name: Constants.userID)
   final String userID;
   @override
+  @JsonKey(name: Constants.createdAt)
   @JsonKey(
       fromJson: ServerTimestampConverter.fromJson,
       toJson: ServerTimestampConverter.toJson)
@@ -156,14 +161,14 @@ class _$_LikestEntityPayload extends _LikestEntityPayload {
 
   @override
   String toString() {
-    return 'LikestEntityPayload(postID: $postID, userID: $userID, createdAt: $createdAt)';
+    return 'LikesEntityPayload(postID: $postID, userID: $userID, createdAt: $createdAt)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LikestEntityPayload &&
+            other is _$_LikesEntityPayload &&
             (identical(other.postID, postID) || other.postID == postID) &&
             (identical(other.userID, userID) || other.userID == userID) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt));
@@ -177,30 +182,31 @@ class _$_LikestEntityPayload extends _LikestEntityPayload {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LikestEntityPayloadCopyWith<_$_LikestEntityPayload> get copyWith =>
-      __$$_LikestEntityPayloadCopyWithImpl<_$_LikestEntityPayload>(
+  _$$_LikesEntityPayloadCopyWith<_$_LikesEntityPayload> get copyWith =>
+      __$$_LikesEntityPayloadCopyWithImpl<_$_LikesEntityPayload>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LikestEntityPayloadToJson(
+    return _$$_LikesEntityPayloadToJson(
       this,
     );
   }
 }
 
-abstract class _LikestEntityPayload extends LikestEntityPayload {
-  const factory _LikestEntityPayload(
+abstract class _LikesEntityPayload extends LikesEntityPayload {
+  const factory _LikesEntityPayload(
       {@JsonKey(name: Constants.postID) required final String postID,
       @JsonKey(name: Constants.userID) required final String userID,
+      @JsonKey(name: Constants.createdAt)
       @JsonKey(
           fromJson: ServerTimestampConverter.fromJson,
           toJson: ServerTimestampConverter.toJson)
-      required final Object createdAt}) = _$_LikestEntityPayload;
-  const _LikestEntityPayload._() : super._();
+      required final Object createdAt}) = _$_LikesEntityPayload;
+  const _LikesEntityPayload._() : super._();
 
-  factory _LikestEntityPayload.fromJson(Map<String, dynamic> json) =
-      _$_LikestEntityPayload.fromJson;
+  factory _LikesEntityPayload.fromJson(Map<String, dynamic> json) =
+      _$_LikesEntityPayload.fromJson;
 
   @override
   @JsonKey(name: Constants.postID)
@@ -209,12 +215,13 @@ abstract class _LikestEntityPayload extends LikestEntityPayload {
   @JsonKey(name: Constants.userID)
   String get userID;
   @override
+  @JsonKey(name: Constants.createdAt)
   @JsonKey(
       fromJson: ServerTimestampConverter.fromJson,
       toJson: ServerTimestampConverter.toJson)
   Object get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_LikestEntityPayloadCopyWith<_$_LikestEntityPayload> get copyWith =>
+  _$$_LikesEntityPayloadCopyWith<_$_LikesEntityPayload> get copyWith =>
       throw _privateConstructorUsedError;
 }

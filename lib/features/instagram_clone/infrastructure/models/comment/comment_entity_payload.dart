@@ -12,7 +12,7 @@ part 'comment_entity_payload.g.dart';
 abstract class CommentEntityPayload implements _$CommentEntityPayload {
   const CommentEntityPayload._();
   const factory CommentEntityPayload({
-    @JsonKey(ignore: true, name: Constants.commentID) String? commentID,
+    @JsonKey(name: Constants.commentID) String? commentID,
     @JsonKey(name: Constants.comment) required String comment,
     @JsonKey(name: Constants.createdAt)
     @JsonKey(

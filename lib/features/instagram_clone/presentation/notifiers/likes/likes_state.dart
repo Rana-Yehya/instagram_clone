@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_storage_failures/cloud_storage_failure.dart';
 
 class LikesState {
-  final Option<Either<CloudStorageFailure, Unit>> authFailureOrSuccessOption;
+  final Option<Either<CloudStorageFailure, bool>> authFailureOrSuccessOption;
   final bool isSubmitting;
   LikesState({
     required this.authFailureOrSuccessOption,
