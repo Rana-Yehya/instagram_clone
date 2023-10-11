@@ -17,8 +17,17 @@ abstract class FirestoreService {
   Future<Either<CloudStorageFailure, UserAuthEntity>> getUserData({
     required UniqueId userID,
   });
+  Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getAllPosts();
   Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getUserPosts({
     required UniqueId userID,
+  });
+  /*
+  Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getPostsBySearchTerm({
+    required String searchTerm,
+  });
+  */
+  Either<CloudStorageFailure, Stream<Iterable<PostEntity>>> getPostsBySearchTerm({
+    required String searchTerm,
   });
   Future<Either<CloudStorageFailure, Unit>> saveUserPost({
     required PostEntity postEntity,

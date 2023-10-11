@@ -84,6 +84,41 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
+  Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getAllPosts() async {
+    try {
+      Iterable<PostEntity>? postEntityList;
+      final document = FirebaseFirestore.instance.collection(Constants.posts);
+
+      final descendingDoc =
+          document.orderBy(Constants.createdAt, descending: true);
+      await descendingDoc
+          .get()
+          .then((value) {
+        final posts = value.docs.map(
+          (doc) => PostEntityPayload.fromJson(doc.data()),
+        );
+        postEntityList = posts.map((post) => post.toDomain());
+      });
+
+      if (postEntityList == const Iterable.empty() || postEntityList == null) {
+        return right(const Iterable.empty());
+      } else {
+        return right(postEntityList!);
+      }
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('object-not-found')) {
+        return left(const CloudStorageFailure.objectNotFound());
+      } else if (e.message!.contains('unauthorized')) {
+        return left(const CloudStorageFailure.unauthorized());
+      } else if (e.message!.contains('canceled')) {
+        return left(const CloudStorageFailure.cancelledByUser());
+      } else {
+        return left(const CloudStorageFailure.unknown());
+      }
+    }
+  }
+
+  @override
   Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getUserPosts({
     required UniqueId userID,
   }) async {
@@ -488,5 +523,42 @@ class FirebaseFirestoreProvider extends FirestoreService {
         }
       },
     );
+  }
+
+  @override
+  Either<CloudStorageFailure, Stream<Iterable<PostEntity>>>
+      getPostsBySearchTerm({required String searchTerm}) {
+    StreamController<Iterable<PostEntity>> controller =
+        StreamController<Iterable<PostEntity>>();
+    try {
+      FirebaseFirestore.instance
+          .collection(Constants.posts)
+          .orderBy(Constants.createdAt, descending: true)
+          .snapshots()
+          .listen((snapshot) {
+        final posts = snapshot.docs
+            .map(
+              (doc) => PostEntityPayload.fromJson(doc.data()).toDomain(),
+            )
+            .where(
+              (post) => post.message.toLowerCase().contains(
+                    searchTerm.toLowerCase(),
+                  ),
+            );
+
+        controller.sink.add(posts);
+      });
+      return right(controller.stream);
+    } on FirebaseException catch (e) {
+      if (e.message!.contains('object-not-found')) {
+        return left(const CloudStorageFailure.objectNotFound());
+      } else if (e.message!.contains('unauthorized')) {
+        return left(const CloudStorageFailure.unauthorized());
+      } else if (e.message!.contains('canceled')) {
+        return left(const CloudStorageFailure.cancelledByUser());
+      } else {
+        return left(const CloudStorageFailure.unknown());
+      }
+    }
   }
 }

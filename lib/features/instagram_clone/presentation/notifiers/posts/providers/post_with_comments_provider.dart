@@ -34,11 +34,9 @@ final postWithCommentsProvider = StreamProvider.family
   }
 
   firestoreService
-      .getUserPostDetails(
-    postDetailsEntity: postDetailsEntity,
-  )
+      .getUserPostDetails(postDetailsEntity: postDetailsEntity)
       .then((value) {
-    value.fold((l) => null, (postCommentsEntity) {
+    value.fold((cloudStorageFailure) => null, (postCommentsEntity) {
       postEntity = postCommentsEntity.postEntity;
       commentEntityList = postCommentsEntity.commentEntityList;
       notify();
