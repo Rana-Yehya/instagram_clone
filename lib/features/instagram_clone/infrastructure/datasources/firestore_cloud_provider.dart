@@ -171,7 +171,6 @@ class FirebaseFirestoreProvider extends FirestoreService {
         return right(false);
       } else {
         final likesEntityDTO = LikesEntityPayload.fromDomain(likesEntity);
-        // TODO: Check this
         await FirebaseFirestore.instance
             .collection(Constants.likes)
             .add(likesEntityDTO.toJson());
