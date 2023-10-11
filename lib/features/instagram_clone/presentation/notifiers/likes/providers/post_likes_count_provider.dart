@@ -6,20 +6,13 @@ import 'package:instagram_clone/features/instagram_clone/infrastructure/datasour
 final postLikesCountProvider =
     StreamProvider.family.autoDispose<int, String>((ref, String postID) {
   final FirestoreService cloudService = FirebaseFirestoreProvider();
-  final controller = StreamController<int>.broadcast();
+  final controller = StreamController<int>();
 
-  cloudService
-      .getUserPostLikes(
-        postID: postID,
-      )
-      .then((result) => result.fold(
-            (_) => controller.sink.add(0),
-            (value) => controller.sink.add(value),
-          ));
-
-  ref.onDispose(() {
-    controller.close();
-  });
+  final result = cloudService.getUserPostLikes(postID: postID);
+  result.fold(
+    (failure) => controller.sink.add(0),
+    (hasLiked) => controller.addStream(hasLiked),
+  );
 
   return controller.stream;
 });

@@ -8,7 +8,7 @@ class DeletePostNotifier extends StateNotifier<PostState> {
   final FirestoreService cloudService = FirebaseFirestoreProvider();
   DeletePostNotifier() : super(PostState.unknown());
 
-  void deletePost({required String postID}) async {
+  Future<void> deletePost({required String postID}) async {
     state = state.copiedWithIsLoading(true);
 
     final result = await cloudService.deleteUserPost(postID: postID);

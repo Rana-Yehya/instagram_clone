@@ -6,7 +6,3 @@ final authStorageProvider =
     StateNotifierProvider<AuthStorageNotifier, AuthStorageState>(
   (_) => AuthStorageNotifier(),
 );
-
-final isStoredProvider = Provider<AuthStorageState>((ref) {
-  return ref.watch(authStorageProvider);
-});

@@ -5,8 +5,6 @@ import 'package:instagram_clone/core/entity/unique_id.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/likes/likes_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/likes/providers/has_liked_post_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/likes/providers/post_likes_dislikes_provider.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/lottie_animation.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/lottie_animation_view.dart';
 
 class LikeButton extends ConsumerWidget {
   final String postID;
@@ -33,9 +31,7 @@ class LikeButton extends ConsumerWidget {
         ),
       );
     }, error: (error, StackTrace) {
-      return const LottieAnimationView(
-        lottieAnimation: LottieAnimation.smallError,
-      );
+      return const Card();
     }, loading: () {
       return const Padding(
         padding: EdgeInsets.all(5.0),

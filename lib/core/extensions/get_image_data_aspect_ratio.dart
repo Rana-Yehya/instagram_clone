@@ -8,7 +8,6 @@ extension GetImageDataAspectRatio on Uint8List {
   Future<double> getAspectRatio() async {
     final image = Image.memory(this);
     final result = await image.getImageAspectRatio();
-    print(result);
     return result;
   }
 }

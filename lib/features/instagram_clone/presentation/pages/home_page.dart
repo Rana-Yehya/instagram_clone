@@ -9,8 +9,7 @@ import 'package:instagram_clone/features/instagram_clone/domain/entities/image_o
 import 'package:instagram_clone/features/instagram_clone/infrastructure/helpers/image_picker_helper.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/auth_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/posts/providers/post_settings_provider.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/empty_content_with_text_animation.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/tabs/user_info_view.dart';
+import 'package:instagram_clone/features/instagram_clone/presentation/pages/tabs/user_info_page.dart';
 
 @RoutePage()
 class HomePage extends ConsumerStatefulWidget {
@@ -101,8 +100,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
         body: TabBarView(
           children: [
-            const UserInfoView(),
-            const EmptyContentWithTextAnimation(text: Constants.youHaveNoPosts),
+            const UserInfoPage(),
+            Container(color: Colors.blue),
             Container(color: Colors.brown),
           ],
         ),

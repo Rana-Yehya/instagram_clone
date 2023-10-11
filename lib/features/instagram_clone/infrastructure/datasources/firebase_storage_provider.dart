@@ -60,6 +60,7 @@ class FirebaseStorageProvider extends StorageService {
     required ImageOrVideo imageOrVideo,
     required Uint8List thumbnailUint8List,
     required File fileName,
+    required double thumbnailAspectRatio,
   }) async {
     try {
       final thumbnailRef = FirebaseStorage.instance
@@ -83,6 +84,7 @@ class FirebaseStorageProvider extends StorageService {
         originalFileStorageID: originalFileUploadTask.ref.name,
         thumbnailURLRef: await thumbnailRef.getDownloadURL(),
         originalFileURLRef: await originalFileRef.getDownloadURL(),
+        thumbnailAspectRatio: thumbnailAspectRatio,
       ));
     } on FirebaseException catch (e) {
       if (e.message!.contains('PERMISSION-DEINED')) {

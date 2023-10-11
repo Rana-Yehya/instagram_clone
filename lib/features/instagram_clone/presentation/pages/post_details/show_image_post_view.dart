@@ -3,10 +3,7 @@ import 'package:instagram_clone/features/instagram_clone/domain/entities/post/da
 
 class ShowImagePostView extends StatelessWidget {
   final PostEntity postEntity;
-  const ShowImagePostView({
-    super.key,
-    required this.postEntity,
-  });
+  const ShowImagePostView({super.key, required this.postEntity});
 
   @override
   Widget build(BuildContext context) {

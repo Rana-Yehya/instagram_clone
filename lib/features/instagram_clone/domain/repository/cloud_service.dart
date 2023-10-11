@@ -26,7 +26,7 @@ abstract class FirestoreService {
   Future<Either<CloudStorageFailure, bool>> saveUserOnPostLikesOrDislike({
     required LikesEntity likesEntity,
   });
-  Future<Either<CloudStorageFailure, int>> getUserPostLikes({
+  Either<CloudStorageFailure, Stream<int>> getUserPostLikes({
     required String postID,
   });
   Either<CloudStorageFailure, Stream<bool>> hasUserLikedPost({
@@ -38,7 +38,7 @@ abstract class FirestoreService {
   Future<Either<CloudStorageFailure, Unit>> deletePostComment({
     required String commentID,
   });
-  Future<Either<CloudStorageFailure, Iterable<CommentEntity>>>
+  Either<CloudStorageFailure, Stream<Iterable<CommentEntity>>>
       getUserPostComment({
     required PostDetailsEntity postDetailsEntity,
   });

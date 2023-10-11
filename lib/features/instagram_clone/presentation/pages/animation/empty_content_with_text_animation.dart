@@ -11,6 +11,7 @@ class EmptyContentWithTextAnimation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),

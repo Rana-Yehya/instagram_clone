@@ -1,5 +1,4 @@
 import 'package:another_flushbar/flushbar_helper.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,10 +12,7 @@ import 'package:instagram_clone/features/instagram_clone/presentation/pages/anim
 
 class CommentTile extends ConsumerWidget {
   final CommentEntity commentEntity;
-  const CommentTile({
-    super.key,
-    required this.commentEntity,
-  });
+  const CommentTile({super.key, required this.commentEntity});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,19 +38,17 @@ class CommentTile extends ConsumerWidget {
                   onPressed: () {
                     AwesomeDialog(
                       context: context,
-                      dialogType: DialogType.warning,
+                      dialogType: DialogType.question,
                       title: Constants.delete,
                       desc: Constants.areYouSureYouWantToDeleteThis,
                       btnOkText: "Yes",
                       btnOkOnPress: () async {
-                        ref
+                        await ref
                             .read(sendAndDeleteCommentProvider.notifier)
                             .deleteComment(commentID: commentEntity.commentID);
                       },
                       btnCancelText: 'No',
-                      btnCancelOnPress: () {
-                        context.popRoute();
-                      },
+                      btnCancelOnPress: () {},
                     ).show();
                   },
                   icon: const Icon(Icons.delete))
@@ -71,44 +65,5 @@ class CommentTile extends ConsumerWidget {
     }, loading: () {
       return const Center(child: CircularProgressIndicator());
     });
-
-    /*
-    return userInfo.when(data: (currentUserInfo) {
-      return ListTile(
-        trailing: currentUserInfo.userID == commentEntity.userID.value.toString()
-            ? IconButton(
-                onPressed: () {
-                  AwesomeDialog(
-                  context: context,
-                  dialogType: DialogType.warning,
-                  title: Constants.delete,
-                  desc: Constants.areYouSureYouWantToDeleteThis,
-                  btnOkText: "Yes",
-                  btnOkOnPress: () async {
-                    ref
-                      .read(sendAndDeleteCommentProvider.notifier)
-                      .deleteComment(commentID: commentEntity.commentID);
-                  },
-                  btnCancelText: 'No',
-                  btnCancelOnPress: () {
-                    context.popRoute();
-                  },
-                ).show();
-                  
-                },
-                icon: const Icon(Icons.delete))
-            : null,
-        title: Text(currentUserInfo.displayName),
-        subtitle: Text(commentEntity.comment),
-      );
-    }, error: (error, StackTrace) {
-      return const LottieAnimationView(
-        lottieAnimation: LottieAnimation.error,
-      );
-    }, loading: () {
-      return const CircularProgressIndicator();
-    });
-  
-    */
   }
 }

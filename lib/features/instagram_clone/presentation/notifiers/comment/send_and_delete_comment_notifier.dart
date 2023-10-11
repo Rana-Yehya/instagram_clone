@@ -11,7 +11,7 @@ class SendAndDeleteCommentNotifier extends StateNotifier<CommentState> {
   final FirestoreService cloudService = FirebaseFirestoreProvider();
   SendAndDeleteCommentNotifier() : super(CommentState.unknown());
 
-  void sendComment({
+  Future<void> sendComment({
     required UniqueId userID,
     required String postID,
     required String comment,
@@ -32,7 +32,7 @@ class SendAndDeleteCommentNotifier extends StateNotifier<CommentState> {
     );
   }
 
-  void deleteComment({
+  Future<void> deleteComment({
     required String commentID,
   }) async {
     state = state.copiedWithIsLoading(true);

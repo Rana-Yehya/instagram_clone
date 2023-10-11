@@ -17,6 +17,7 @@ class SignInView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final styleText =
         Theme.of(context).textTheme.titleMedium?.copyWith(height: 1.5);
+
     //final authStorageState = ref.watch(authStorageProvider);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),

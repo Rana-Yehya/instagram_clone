@@ -16,25 +16,24 @@ class ImageUploaderNotifier extends StateNotifier<ImageUploaderState> {
   Future<void> uploadToCloud({
     required ImageOrVideo imageOrVideo,
     required ThumbnailStoragePayload thumbnailStorageRequest,
-    required double thumbnailAspectRatio,
     required String message,
     required Map<PostSetting, bool> postSettings,
     required UniqueId userID,
   }) async {
     state = state.copiedWithIsLoading(true);
-    final postID = const Uuid().v1();
+    final postID = const Uuid().v4();
     final postEntity = PostEntity(
+      postID: postID,
       userID: userID,
       message: message,
       thumbnailURL: thumbnailStorageRequest.thumbnailURLRef,
       fileURL: thumbnailStorageRequest.originalFileURLRef,
       imageOrVideo: imageOrVideo,
       fileName: thumbnailStorageRequest.thumbnailFileUID,
-      aspectRatio: thumbnailAspectRatio,
+      aspectRatio: thumbnailStorageRequest.thumbnailAspectRatio,
       thumbnailStorageID: thumbnailStorageRequest.thumbStorageID,
       originalFileStorageID: thumbnailStorageRequest.originalFileStorageID,
       postSettings: postSettings,
-      postID: postID,
       createdAt: null,
     );
 

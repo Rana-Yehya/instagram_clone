@@ -19,6 +19,7 @@ abstract class StorageService {
     required ImageOrVideo imageOrVideo,
     required Uint8List thumbnailUint8List,
     required File fileName,
+    required double thumbnailAspectRatio,
   });
 
   String refName({required Reference ref});

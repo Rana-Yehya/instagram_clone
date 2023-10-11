@@ -9,7 +9,7 @@ class DeletePostStorageNotifier extends StateNotifier<PostStorageState> {
   final StorageService storageService = FirebaseStorageProvider();
   DeletePostStorageNotifier() : super(PostStorageState.unknown());
 
-  void deletePost({required PostEntity postEntity}) async {
+  Future<void> deletePost({required PostEntity postEntity}) async {
     state = state.copiedWithIsLoading(true);
 
     final result =
@@ -17,7 +17,7 @@ class DeletePostStorageNotifier extends StateNotifier<PostStorageState> {
     state = PostStorageState(
       authFailureOrSuccessOption: some(result),
       isSubmitting: false,
-      postEntity: postEntity,
+      postEntity: PostEntity.empty(),
     );
   }
 }

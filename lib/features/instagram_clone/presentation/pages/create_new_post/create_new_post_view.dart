@@ -8,7 +8,7 @@ import 'package:instagram_clone/core/constants.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/image_or_video.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_settings.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/thumbnail/thumbnail_request.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/auth_provider.dart';
+import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_id_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/posts/providers/post_settings_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/thumbnail/provider/image_uploader_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/thumbnail/provider/image_uploader_storage_provider.dart';
@@ -33,8 +33,8 @@ class CreateNewPostView extends StatefulHookConsumerWidget {
 class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
   @override
   Widget build(BuildContext context) {
-    final thumbnailAspectRatio =
-        ref.watch(imageUploaderStorageProvider).thumbnailAspectRatio;
+    //final thumbnailAspectRatio =
+    //    ref.watch(imageUploaderStorageProvider).thumbnailAspectRatio;
     //final thumbnailStorageRequest = ref.watch(thumbnailStorageRequestProvider);
 
     final thumbnailRequest = ThumbnailRequest(
@@ -49,22 +49,12 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
       _,
       thumbnailStorageRequest,
     ) async {
-      print("originalFileStorageID");
-      print(thumbnailStorageRequest?.originalFileStorageID);
-      print("originalFileURLRef");
-      print(thumbnailStorageRequest?.originalFileURLRef);
-      print("thumbStorageID");
-      print(thumbnailStorageRequest?.thumbStorageID);
-      print("thumbnailURLRef");
-      print(thumbnailStorageRequest?.thumbnailURLRef);
-      //print('The counter changed $newValue');
       await ref.read(imageUploaderProvider.notifier).uploadToCloud(
             imageOrVideo: widget.imageOrVideo,
             message: postTextController.text,
             postSettings: postSettings,
             userID: userID!,
             thumbnailStorageRequest: thumbnailStorageRequest!,
-            thumbnailAspectRatio: thumbnailAspectRatio,
           );
       if (mounted) {
         context.popRoute();
@@ -89,7 +79,8 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
           IconButton(
             onPressed: isPostButtonEnabled.value
                 ? () async {
-                    if (userID?.value.toString() == null) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                    if (userID?.getOrCrash() == null) {
                       return;
                     }
                     await ref
@@ -142,37 +133,5 @@ class _CreateNewPostViewState extends ConsumerState<CreateNewPostView> {
         ),
       ),
     );
-  }
-
-  void saveData(
-    postTextController,
-    thumbnailAspectRatio,
-    postSettings,
-  ) async {
-    final userID = ref.read(userIDProvider);
-    if (userID?.value.toString() == null) {
-      return;
-    }
-    final message = postTextController.text;
-    await ref.read(imageUploaderStorageProvider.notifier).uploadToStorage(
-          fileName: widget.fileName,
-          imageOrVideo: widget.imageOrVideo,
-          userID: userID!,
-        );
-    final thumbnailStorageRequest = ref.read(thumbnailStorageRequestProvider);
-
-    if (thumbnailStorageRequest != null) {
-      await ref.read(imageUploaderProvider.notifier).uploadToCloud(
-            imageOrVideo: widget.imageOrVideo,
-            message: message,
-            postSettings: postSettings,
-            userID: userID,
-            thumbnailStorageRequest: thumbnailStorageRequest,
-            thumbnailAspectRatio: thumbnailAspectRatio,
-          );
-    }
-    if (mounted) {
-      context.popRoute();
-    }
   }
 }

@@ -98,7 +98,7 @@ class FirebaseFirestoreProvider extends FirestoreService {
           .get()
           .then((value) {
         final posts = value.docs.map(
-          (doc) => PostEntityPayload.fromFirestore(doc),
+          (doc) => PostEntityPayload.fromJson(doc.data()),
         );
         postEntityList = posts.map((post) => post.toDomain());
       });
@@ -126,10 +126,10 @@ class FirebaseFirestoreProvider extends FirestoreService {
       {required PostEntity postEntity}) async {
     try {
       final postDTO = PostEntityPayload.fromDomain(postEntity);
-      final postJson = postDTO.toJson();
       await FirebaseFirestore.instance
           .collection(Constants.posts)
-          .add(postJson);
+          .doc(postDTO.postID)
+          .set(postDTO.toJson());
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
@@ -171,10 +171,11 @@ class FirebaseFirestoreProvider extends FirestoreService {
         return right(false);
       } else {
         final likesEntityDTO = LikesEntityPayload.fromDomain(likesEntity);
+        // TODO: Check this
+        await FirebaseFirestore.instance
+            .collection(Constants.likes)
+            .add(likesEntityDTO.toJson());
 
-        await FirebaseFirestore.instance.collection(Constants.likes).add(
-              likesEntityDTO.toJson(),
-            );
         return right(true);
       }
     } on FirebaseException catch (e) {
@@ -191,18 +192,21 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
-  Future<Either<CloudStorageFailure, int>> getUserPostLikes(
-      {required String postID}) async {
+  Either<CloudStorageFailure, Stream<int>> getUserPostLikes(
+      {required String postID}) {
+    StreamController<int> controller = StreamController<int>();
     try {
-      //int numberOfCounts = 0;
-      final document = FirebaseFirestore.instance.collection(Constants.likes);
-
-      int numberOfCounts = await document
-          .where(Constants.postID, isEqualTo: postID)
+      FirebaseFirestore.instance
+          .collection(Constants.likes)
+          .where(
+            Constants.postID,
+            isEqualTo: postID,
+          )
           .snapshots()
-          .length;
-
-      return right(numberOfCounts);
+          .listen((snapshot) {
+        controller.sink.add(snapshot.docs.length);
+      });
+      return right(controller.stream);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());
@@ -261,8 +265,9 @@ class FirebaseFirestoreProvider extends FirestoreService {
     try {
       final commentPayload = CommentEntityPayload.fromDomain(commentEntity);
       await FirebaseFirestore.instance
-          .collection(Constants.comments)
-          .add(commentPayload.toJson());
+          .collection(Constants.comment)
+          .doc(commentPayload.commentID)
+          .set(commentPayload.toJson());
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
@@ -282,17 +287,16 @@ class FirebaseFirestoreProvider extends FirestoreService {
     required String commentID,
   }) async {
     try {
-      final document = FirebaseFirestore.instance
+      final document = await FirebaseFirestore.instance
           .collection(Constants.comment)
           .where(FieldPath.documentId, isEqualTo: commentID)
           .limit(1)
           .get();
 
-      await document.then((query) async {
-        for (final doc in query.docs) {
-          await doc.reference.delete();
-        }
-      });
+      for (final doc in document.docs) {
+        await doc.reference.delete();
+      }
+
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
@@ -308,11 +312,31 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
-  Future<Either<CloudStorageFailure, Iterable<CommentEntity>>>
+  Either<CloudStorageFailure, Stream<Iterable<CommentEntity>>>
       getUserPostComment({
     required PostDetailsEntity postDetailsEntity,
-  }) async {
+  }) {
     try {
+      StreamController<Iterable<CommentEntity>> controller =
+          StreamController<Iterable<CommentEntity>>();
+      FirebaseFirestore.instance
+          .collection(Constants.comment)
+          .where(Constants.postID, isEqualTo: postDetailsEntity.postID)
+          .snapshots()
+          .listen((snapshot) {
+        final docs = snapshot.docs;
+        final limitedComments = postDetailsEntity.limit != null
+            ? docs.take(postDetailsEntity.limit!)
+            : docs;
+        final comments = limitedComments
+            .where((element) => !element.metadata.hasPendingWrites)
+            .map((comment) {
+          final commentEntity = CommentEntityPayload.fromJson(comment.data());
+          return commentEntity.toDomain();
+        });
+        controller.sink.add(comments);
+      });
+      /*
       final document = await FirebaseFirestore.instance
           .collection(Constants.comment)
           .where(Constants.postID, isEqualTo: postDetailsEntity.postID)
@@ -327,7 +351,8 @@ class FirebaseFirestoreProvider extends FirestoreService {
         final commentEntity = CommentEntityPayload.fromFirestore(comment);
         return commentEntity.toDomain();
       });
-      return right(comments);
+      */
+      return right(controller.stream);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
         return left(const CloudStorageFailure.objectNotFound());
@@ -348,7 +373,7 @@ class FirebaseFirestoreProvider extends FirestoreService {
     try {
       await _deleteAllDocument(
         postID: postID,
-        inCollection: Constants.comments,
+        inCollection: Constants.comment,
       );
 
       await _deleteAllDocument(
@@ -356,18 +381,16 @@ class FirebaseFirestoreProvider extends FirestoreService {
         inCollection: Constants.likes,
       );
 
-      final postInCollection = await FirebaseFirestore.instance
+      final postInCollections = await FirebaseFirestore.instance
           .collection(Constants.posts)
-          .where(
-            Constants.postID,
-            isEqualTo: postID,
-          )
+          .where(FieldPath.documentId, isEqualTo: postID)
           .limit(1)
           .get();
 
-      for (final post in postInCollection.docs) {
-        await post.reference.delete();
+      for (final doc in postInCollections.docs) {
+        await doc.reference.delete();
       }
+
       return right(unit);
     } on FirebaseException catch (e) {
       if (e.message!.contains('object-not-found')) {
@@ -404,7 +427,7 @@ class FirebaseFirestoreProvider extends FirestoreService {
         postEntity = postEntityDTO.toDomain();
 
         final commentsCollection =
-            FirebaseFirestore.instance.collection(Constants.comments);
+            FirebaseFirestore.instance.collection(Constants.comment);
         final snapshot = await commentsCollection.count().get();
         if (snapshot.count != 0) {
           final commentsDocs = commentsCollection
@@ -417,22 +440,16 @@ class FirebaseFirestoreProvider extends FirestoreService {
                 descending: true,
               );
           final limitedComments = postDetailsEntity.limit != null
-              ? commentsDocs.limit(postDetailsEntity.limit!)
+              ? (snapshot.count >= postDetailsEntity.limit!
+                  ? commentsDocs.limit(postDetailsEntity.limit!)
+                  : commentsDocs)
               : commentsDocs;
-          print(limitedComments);
-          final doesPostHaveComments =
-              await limitedComments.count().get(); // .parameters.length;
-          print(doesPostHaveComments);
-
-          if (doesPostHaveComments != 0) {
-            final comments = await limitedComments.get();
-            commentEntityList = comments.docs.map((comment) {
-              final commentEntity = CommentEntityPayload.fromFirestore(comment);
-              return commentEntity.toDomain();
-            });
-          }
+          final comments = await limitedComments.get();
+          commentEntityList = comments.docs.map((comment) {
+            final commentEntity = CommentEntityPayload.fromJson(comment.data());
+            return commentEntity.toDomain();
+          });
         }
-        print(snapshot);
       }
       return (right(
         PostCommentsEntity(
@@ -458,19 +475,19 @@ class FirebaseFirestoreProvider extends FirestoreService {
     required String inCollection,
   }) {
     return FirebaseFirestore.instance.runTransaction(
-        maxAttempts: 3,
-        timeout: const Duration(seconds: 20), (transaction) async {
-      final query = await FirebaseFirestore.instance
-          .collection(inCollection)
-          .where(
-            Constants.postID,
-            isEqualTo: postID,
-          )
-          .get();
-
-      for (final doc in query.docs) {
-        transaction.delete(doc.reference);
-      }
-    });
+      maxAttempts: 3,
+      timeout: const Duration(
+        seconds: 100,
+      ),
+      (transaction) async {
+        final query = await FirebaseFirestore.instance
+            .collection(inCollection)
+            .where(Constants.postID, isEqualTo: postID)
+            .get();
+        for (final doc in query.docs) {
+          transaction.delete(doc.reference);
+        }
+      },
+    );
   }
 }

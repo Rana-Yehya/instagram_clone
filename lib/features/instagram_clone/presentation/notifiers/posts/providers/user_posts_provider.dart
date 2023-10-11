@@ -5,7 +5,7 @@ import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_s
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/repository/cloud_service.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/datasources/firestore_cloud_provider.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/auth_provider.dart';
+import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_id_provider.dart';
 
 final userPostsProvider = StreamProvider.autoDispose<
     Either<CloudStorageFailure, Iterable<PostEntity>>>((ref) {
@@ -18,7 +18,7 @@ final userPostsProvider = StreamProvider.autoDispose<
     firestoreService.getUserPosts(userID: userID!).then((value) {
       value.fold(
         (failure) => controller.add(left(failure)),
-        (userAuthEntity) => controller.add(right(userAuthEntity)),
+        (postEntity) => controller.add(right(postEntity)),
       );
     });
   }

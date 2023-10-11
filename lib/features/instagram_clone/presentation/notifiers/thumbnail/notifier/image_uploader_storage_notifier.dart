@@ -36,13 +36,11 @@ class ImageUploaderStorageNotifier
     thumbnailUint8List.fold((failureLoadingImage) {
       state = ImageUploaderStorageState(
         authFailureOrSuccessOption: optionOf(left(failureLoadingImage)),
-        thumbnailAspectRatio: 0.0,
         isSubmitting: false,
       );
     }, (thumbnailUint8List) async {
       final thumbnailAspectRatio = await thumbnailUint8List
-          .getAspectRatio()
-          .then((aspectRatio) => aspectRatio);
+          .getAspectRatio();
       // file url creation
       final thumbnailFileUID = const Uuid().v4();
 
@@ -52,10 +50,10 @@ class ImageUploaderStorageNotifier
         imageOrVideo: imageOrVideo,
         thumbnailUint8List: thumbnailUint8List,
         fileName: fileName,
+        thumbnailAspectRatio: thumbnailAspectRatio
       );
       state = ImageUploaderStorageState(
         authFailureOrSuccessOption: optionOf(result),
-        thumbnailAspectRatio: thumbnailAspectRatio,
         isSubmitting: false,
       );
     });
