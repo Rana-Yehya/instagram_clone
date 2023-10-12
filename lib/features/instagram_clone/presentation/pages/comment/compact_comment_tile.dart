@@ -69,7 +69,7 @@ class CompactCommentTile extends ConsumerWidget {
             ),
             children: [
               TextSpan(
-                text: userInfo.displayName,
+                text: "${userInfo.displayName}: ",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ),

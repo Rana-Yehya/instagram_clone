@@ -5,7 +5,6 @@ import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/empty_content_with_text_animation.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/lottie_animation.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/lottie_animation_view.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/post_thumbnail/posts_grid_view.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/tabs/posts_sliver_grid_view.dart';
 
 class SearchGridView extends ConsumerWidget {
@@ -40,8 +39,14 @@ class SearchGridView extends ConsumerWidget {
         ),
       );
     }, loading: () {
-      return const Center(
-        child: CircularProgressIndicator(),
+      return const SliverToBoxAdapter(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+          ],
+        ),
       );
     });
   }

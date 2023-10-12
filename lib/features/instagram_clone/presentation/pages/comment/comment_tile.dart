@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:instagram_clone/core/constants.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/cloud_storage_failures/cloud_storage_failure.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/comment/comment_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_id_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_info_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/comment/providers/send_and_delete_comment_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/animation/lottie_animation.dart';
@@ -17,6 +18,7 @@ class CommentTile extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final userInfo = ref.watch(userInfoProvider(commentEntity.userID));
+    final userID = ref.watch(userIDProvider);
     return userInfo.when(data: (posts) {
       Widget? returnedWidget;
       posts.fold((failure) {
@@ -33,7 +35,7 @@ class CommentTile extends ConsumerWidget {
         returnedWidget = const Card();
       }, (currentUserInfo) {
         returnedWidget = ListTile(
-          trailing: currentUserInfo.userID == commentEntity.userID
+          trailing: currentUserInfo.userID == userID
               ? IconButton(
                   onPressed: () {
                     AwesomeDialog(

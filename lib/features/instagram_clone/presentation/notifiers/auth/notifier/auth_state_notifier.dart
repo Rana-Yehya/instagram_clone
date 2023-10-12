@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:instagram_clone/core/entity/unique_id.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/repository/auth_service.dart';
 import 'package:instagram_clone/features/instagram_clone/infrastructure/datasources/firebase_auth_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/state/auth_state.dart';
@@ -14,11 +13,11 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
       (a) => a,
     );
 
-    if (userEntity?.userID != null) {
+    if (userEntity?.userID.getOrCrash() != null) {
       state = AuthState(
         authFailureOrSuccessOption: some(right(unit)),
         isSubmitting: false,
-        userUniqueID: userEntity?.userID ?? UniqueId.fromUnique(''),
+        userUniqueID: userEntity?.userID,
       );
     }
   }
@@ -45,7 +44,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     state = AuthState(
       authFailureOrSuccessOption: some(result),
       isSubmitting: false,
-      userUniqueID: userEntity?.userID ?? UniqueId.fromUnique(''),
+      userUniqueID: userEntity?.userID,
     );
   }
 
@@ -64,7 +63,7 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
     state = AuthState(
       authFailureOrSuccessOption: some(result),
       isSubmitting: false,
-      userUniqueID: userEntity?.userID ?? UniqueId.fromUnique(''),
+      userUniqueID: userEntity?.userID,
     );
   }
 }

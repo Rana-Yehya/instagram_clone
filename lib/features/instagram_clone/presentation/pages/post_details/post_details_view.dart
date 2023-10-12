@@ -7,6 +7,7 @@ import 'package:instagram_clone/core/router/app_router.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/date_sorting.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post/data/post_entity.dart';
 import 'package:instagram_clone/features/instagram_clone/domain/entities/post_details/post_details_entity.dart';
+import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_id_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/auth/provider/user_info_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/posts/providers/delete_post_provider.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/notifiers/posts/providers/delete_post_storage_provider.dart';
@@ -41,20 +42,16 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
       dateSorting: DateSorting.oldestOnTop,
     );
     final userInfo = ref.watch(userInfoProvider(widget.postEntity.userID));
+    final userID = ref.watch(userIDProvider);
 
-    final userInfoUserID = userInfo
-        .whenData((value) => value.fold(
-              (l) => null,
-              (r) => r.userID,
-            ))
-        .value;
-
-    final userInfoDisplayName = userInfo
-        .whenData((value) => value.fold(
-              (l) => null,
-              (r) => r.displayName,
-            ))
-        .value;
+    final userInfoDisplayName = userInfo.when(
+      data: (data) => data.fold(
+        (l) => null,
+        (r) => r.displayName,
+      ),
+      error: (error, stackError) => null,
+      loading: () => null,
+    );
     final postAndComments = ref.watch(
       postWithCommentsProvider(request),
     );
@@ -126,7 +123,7 @@ class _PostDetailsViewState extends ConsumerState<PostDetailsView> {
                     if (postAndComments.postEntity.allowsLikes)
                       LikeButton(
                         postID: postID,
-                        userID: userInfoUserID!,
+                        userID: userID!,
                       ),
                     if (postAndComments.postEntity.allowsComments)
                       IconButton(

@@ -10,7 +10,6 @@ import 'package:instagram_clone/features/instagram_clone/presentation/pages/crea
 
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/home_page.dart';
 import 'package:instagram_clone/features/instagram_clone/presentation/pages/post_details/post_details_page.dart';
-import 'package:instagram_clone/features/instagram_clone/presentation/pages/tabs/user_info_page.dart';
 
 import 'package:instagram_clone/main.dart';
 
@@ -26,7 +25,6 @@ class AppRouter extends _$AppRouter {
     AutoRoute(page: SignInRoute.page),
     AutoRoute(page: HomeRoute.page),
     AutoRoute(page: CreateNewPostRoute.page),
-    AutoRoute(page: UserInfoRoute.page),
     AutoRoute(page: PostCommentRoute.page),
     AutoRoute(page: PostDetailsRoute.page),
     

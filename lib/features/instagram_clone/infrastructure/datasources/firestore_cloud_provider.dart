@@ -47,8 +47,11 @@ class FirebaseFirestoreProvider extends FirestoreService {
   Future<Either<CloudStorageFailure, UserAuthEntity>> getUserData({
     required UniqueId userID,
   }) async {
-    Map<String, dynamic> json = <String, dynamic>{};
+    
     try {
+      Map<String, dynamic> json = <String, dynamic>{};
+      
+      print(userID.getOrCrash());
       await FirebaseFirestore.instance
           .collection(Constants.users)
           .where(Constants.userID, isEqualTo: userID.getOrCrash())
@@ -59,7 +62,8 @@ class FirebaseFirestoreProvider extends FirestoreService {
           json = doc.data();
         }
       });
-
+      print("json");
+      print(json);
       if (json != <String, dynamic>{}) {
         final userAuthPayload = UserAuthPayload.fromJson(
           json,
@@ -84,16 +88,15 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }
 
   @override
-  Future<Either<CloudStorageFailure, Iterable<PostEntity>>> getAllPosts() async {
+  Future<Either<CloudStorageFailure, Iterable<PostEntity>>>
+      getAllPosts() async {
     try {
       Iterable<PostEntity>? postEntityList;
       final document = FirebaseFirestore.instance.collection(Constants.posts);
 
       final descendingDoc =
           document.orderBy(Constants.createdAt, descending: true);
-      await descendingDoc
-          .get()
-          .then((value) {
+      await descendingDoc.get().then((value) {
         final posts = value.docs.map(
           (doc) => PostEntityPayload.fromJson(doc.data()),
         );
@@ -228,8 +231,9 @@ class FirebaseFirestoreProvider extends FirestoreService {
   @override
   Either<CloudStorageFailure, Stream<int>> getUserPostLikes(
       {required String postID}) {
-    StreamController<int> controller = StreamController<int>();
+    
     try {
+      StreamController<int> controller = StreamController<int>();
       FirebaseFirestore.instance
           .collection(Constants.likes)
           .where(
@@ -258,8 +262,9 @@ class FirebaseFirestoreProvider extends FirestoreService {
   Either<CloudStorageFailure, Stream<bool>> hasUserLikedPost({
     required LikesEntity likesEntity,
   }) {
-    StreamController<bool> controller = StreamController<bool>();
+    
     try {
+      StreamController<bool> controller = StreamController<bool>();
       FirebaseFirestore.instance
           .collection(Constants.likes)
           .where(
@@ -528,9 +533,8 @@ class FirebaseFirestoreProvider extends FirestoreService {
   @override
   Either<CloudStorageFailure, Stream<Iterable<PostEntity>>>
       getPostsBySearchTerm({required String searchTerm}) {
-    StreamController<Iterable<PostEntity>> controller =
-        StreamController<Iterable<PostEntity>>();
     try {
+      final controller = StreamController<Iterable<PostEntity>>();
       FirebaseFirestore.instance
           .collection(Constants.posts)
           .orderBy(Constants.createdAt, descending: true)

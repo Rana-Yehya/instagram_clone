@@ -20,6 +20,10 @@ class LikeButton extends ConsumerWidget {
     final hasUserLikedPost = ref.watch(hasUserLikedPostProvider(likesEntity));
 
     return hasUserLikedPost.when(data: (data) {
+      print("userID");
+      print(userID);
+      print("data");
+      print(data);
       return IconButton(
         onPressed: () {
           ref.read(

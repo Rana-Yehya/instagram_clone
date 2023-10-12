@@ -55,7 +55,8 @@ class MainPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final isLoggedIn = ref.watch(isLoggedInProvider);
     final userID = ref.watch(userIDProvider);
-
+    print("userID here");
+    print(userID);
     if (isLoggedIn == some(right(unit)) && userID != null) {
       //context.pushRoute(const HomeRoute());
       return const HomePage();
