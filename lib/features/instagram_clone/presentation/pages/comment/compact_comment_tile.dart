@@ -11,11 +11,12 @@ class CompactCommentTile extends ConsumerWidget {
   final CommentEntity commentEntity;
   const CompactCommentTile({
     super.key,
-    required this.commentEntity,
+    required this.commentEntity
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print(commentEntity);
     final userInfo = ref.watch(
       userInfoProvider(commentEntity.userID),
     );

@@ -122,8 +122,6 @@ class PostCommentView extends HookConsumerWidget {
     if (userID == null) {
       return;
     }
-    print("userID ->");
-    print(userID);
 
     await ref.read(sendAndDeleteCommentProvider.notifier).sendComment(
           userID: userID,
