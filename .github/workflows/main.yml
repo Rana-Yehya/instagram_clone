@@ -53,7 +53,7 @@ jobs:
           mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app_name-${VERSION_NUMBER}-${BUILD_NUMBER}.apk
 
       - name: Upload the APK onto Github
-        uses: ncipollo/release-action@v1
+        uses: ncipollo/release-action@v1.0.1
         with:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
           token: ${{ secrets.GH_TOKEN }}
