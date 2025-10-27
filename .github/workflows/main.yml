@@ -67,5 +67,5 @@ jobs:
           firebase appdistribution:distribute \
             "build/app/outputs/flutter-apk/app_name-${{ steps.flutter_version.outputs.version_number }}-${{ steps.flutter_version.outputs.build_number }}.apk" \
             --app "${{ secrets.FIREBASE_APP_ID }}" \
-            --emails "ranayehyamohamed@gmail.com,loopsofvoid@gmail.com" \
+            --testers "ranayehyamohamed@gmail.com,loopsofvoid@gmail.com" \
             --release-notes "Automated build: ${{ github.ref }} | Version: ${{ steps.flutter_version.outputs.version_number }}"
