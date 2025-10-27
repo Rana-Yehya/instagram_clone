@@ -64,6 +64,8 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           curl -sL https://firebase.tools | bash  # Install Firebase CLI
-          firebase appdistribution:distribute build/app/outputs/flutter-apk/app_name-${{ steps.flutter_version.outputs.version_number }}-${{ steps.flutter_version.outputs.build_number }}.apk --app ${{ secrets.FIREBASE_APP_ID }} --groups rpa-testers --release-notes "New release for version ${{ github.ref }}"
-          --emails "ranayehyamohamed@gmail.com,loopsofvoid@gmail.com" \
-          --release-notes "New release for version"
+          firebase appdistribution:distribute \
+            "build/app/outputs/flutter-apk/app_name-${{ steps.flutter_version.outputs.version_number }}-${{ steps.flutter_version.outputs.build_number }}.apk" \
+            --app "${{ secrets.FIREBASE_APP_ID }}" \
+            --emails "ranayehyamohamed@gmail.com,loopsofvoid@gmail.com" \
+            --release-notes "Automated build: ${{ github.ref }} | Version: ${{ steps.flutter_version.outputs.version_number }}"
