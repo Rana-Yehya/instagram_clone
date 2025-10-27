@@ -12,7 +12,7 @@ part of 'value_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ValueFailure<T> {
@@ -57,22 +57,22 @@ class _$ValueFailureCopyWithImpl<T, $Res, $Val extends ValueFailure<T>>
 }
 
 /// @nodoc
-abstract class _$$_ValueFailureCopyWith<T, $Res>
+abstract class _$$ValueFailureImplCopyWith<T, $Res>
     implements $ValueFailureCopyWith<T, $Res> {
-  factory _$$_ValueFailureCopyWith(
-          _$_ValueFailure<T> value, $Res Function(_$_ValueFailure<T>) then) =
-      __$$_ValueFailureCopyWithImpl<T, $Res>;
+  factory _$$ValueFailureImplCopyWith(_$ValueFailureImpl<T> value,
+          $Res Function(_$ValueFailureImpl<T>) then) =
+      __$$ValueFailureImplCopyWithImpl<T, $Res>;
   @override
   @useResult
   $Res call({T failure});
 }
 
 /// @nodoc
-class __$$_ValueFailureCopyWithImpl<T, $Res>
-    extends _$ValueFailureCopyWithImpl<T, $Res, _$_ValueFailure<T>>
-    implements _$$_ValueFailureCopyWith<T, $Res> {
-  __$$_ValueFailureCopyWithImpl(
-      _$_ValueFailure<T> _value, $Res Function(_$_ValueFailure<T>) _then)
+class __$$ValueFailureImplCopyWithImpl<T, $Res>
+    extends _$ValueFailureCopyWithImpl<T, $Res, _$ValueFailureImpl<T>>
+    implements _$$ValueFailureImplCopyWith<T, $Res> {
+  __$$ValueFailureImplCopyWithImpl(
+      _$ValueFailureImpl<T> _value, $Res Function(_$ValueFailureImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_ValueFailureCopyWithImpl<T, $Res>
   $Res call({
     Object? failure = freezed,
   }) {
-    return _then(_$_ValueFailure<T>(
+    return _then(_$ValueFailureImpl<T>(
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_ValueFailureCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$_ValueFailure<T> implements _ValueFailure<T> {
-  const _$_ValueFailure({required this.failure});
+class _$ValueFailureImpl<T> implements _ValueFailure<T> {
+  const _$ValueFailureImpl({required this.failure});
 
   @override
   final T failure;
@@ -103,10 +103,10 @@ class _$_ValueFailure<T> implements _ValueFailure<T> {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ValueFailure<T> &&
+            other is _$ValueFailureImpl<T> &&
             const DeepCollectionEquality().equals(other.failure, failure));
   }
 
@@ -117,17 +117,19 @@ class _$_ValueFailure<T> implements _ValueFailure<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ValueFailureCopyWith<T, _$_ValueFailure<T>> get copyWith =>
-      __$$_ValueFailureCopyWithImpl<T, _$_ValueFailure<T>>(this, _$identity);
+  _$$ValueFailureImplCopyWith<T, _$ValueFailureImpl<T>> get copyWith =>
+      __$$ValueFailureImplCopyWithImpl<T, _$ValueFailureImpl<T>>(
+          this, _$identity);
 }
 
 abstract class _ValueFailure<T> implements ValueFailure<T> {
-  const factory _ValueFailure({required final T failure}) = _$_ValueFailure<T>;
+  const factory _ValueFailure({required final T failure}) =
+      _$ValueFailureImpl<T>;
 
   @override
   T get failure;
   @override
   @JsonKey(ignore: true)
-  _$$_ValueFailureCopyWith<T, _$_ValueFailure<T>> get copyWith =>
+  _$$ValueFailureImplCopyWith<T, _$ValueFailureImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

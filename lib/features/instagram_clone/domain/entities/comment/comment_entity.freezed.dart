@@ -12,7 +12,7 @@ part of 'comment_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CommentEntity {
@@ -86,11 +86,11 @@ class _$CommentEntityCopyWithImpl<$Res, $Val extends CommentEntity>
 }
 
 /// @nodoc
-abstract class _$$_CommentEntityCopyWith<$Res>
+abstract class _$$CommentEntityImplCopyWith<$Res>
     implements $CommentEntityCopyWith<$Res> {
-  factory _$$_CommentEntityCopyWith(
-          _$_CommentEntity value, $Res Function(_$_CommentEntity) then) =
-      __$$_CommentEntityCopyWithImpl<$Res>;
+  factory _$$CommentEntityImplCopyWith(
+          _$CommentEntityImpl value, $Res Function(_$CommentEntityImpl) then) =
+      __$$CommentEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$_CommentEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CommentEntityCopyWithImpl<$Res>
-    extends _$CommentEntityCopyWithImpl<$Res, _$_CommentEntity>
-    implements _$$_CommentEntityCopyWith<$Res> {
-  __$$_CommentEntityCopyWithImpl(
-      _$_CommentEntity _value, $Res Function(_$_CommentEntity) _then)
+class __$$CommentEntityImplCopyWithImpl<$Res>
+    extends _$CommentEntityCopyWithImpl<$Res, _$CommentEntityImpl>
+    implements _$$CommentEntityImplCopyWith<$Res> {
+  __$$CommentEntityImplCopyWithImpl(
+      _$CommentEntityImpl _value, $Res Function(_$CommentEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_CommentEntityCopyWithImpl<$Res>
     Object? userID = null,
     Object? postID = null,
   }) {
-    return _then(_$_CommentEntity(
+    return _then(_$CommentEntityImpl(
       commentID: null == commentID
           ? _value.commentID
           : commentID // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$_CommentEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CommentEntity implements _CommentEntity {
-  const _$_CommentEntity(
+class _$CommentEntityImpl implements _CommentEntity {
+  const _$CommentEntityImpl(
       {required this.commentID,
       required this.comment,
       required this.createdAt,
@@ -170,10 +170,10 @@ class _$_CommentEntity implements _CommentEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CommentEntity &&
+            other is _$CommentEntityImpl &&
             (identical(other.commentID, commentID) ||
                 other.commentID == commentID) &&
             (identical(other.comment, comment) || other.comment == comment) &&
@@ -190,8 +190,8 @@ class _$_CommentEntity implements _CommentEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CommentEntityCopyWith<_$_CommentEntity> get copyWith =>
-      __$$_CommentEntityCopyWithImpl<_$_CommentEntity>(this, _$identity);
+  _$$CommentEntityImplCopyWith<_$CommentEntityImpl> get copyWith =>
+      __$$CommentEntityImplCopyWithImpl<_$CommentEntityImpl>(this, _$identity);
 }
 
 abstract class _CommentEntity implements CommentEntity {
@@ -200,7 +200,7 @@ abstract class _CommentEntity implements CommentEntity {
       required final String comment,
       required final DateTime? createdAt,
       required final UniqueId userID,
-      required final String postID}) = _$_CommentEntity;
+      required final String postID}) = _$CommentEntityImpl;
 
   @override
   String get commentID;
@@ -214,6 +214,6 @@ abstract class _CommentEntity implements CommentEntity {
   String get postID;
   @override
   @JsonKey(ignore: true)
-  _$$_CommentEntityCopyWith<_$_CommentEntity> get copyWith =>
+  _$$CommentEntityImplCopyWith<_$CommentEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -49,7 +49,6 @@ class FirebaseFirestoreProvider extends FirestoreService {
   }) async {
     Map<String, dynamic> json = <String, dynamic>{};
     try {
-
       await FirebaseFirestore.instance
           .collection(Constants.users)
           .where(Constants.userID, isEqualTo: userID.getOrCrash())
@@ -473,7 +472,7 @@ class FirebaseFirestoreProvider extends FirestoreService {
                 descending: true,
               );
           final limitedComments = postDetailsEntity.limit != null
-              ? (snapshot.count >= postDetailsEntity.limit!
+              ? ((snapshot.count ?? 0) >= postDetailsEntity.limit!
                   ? commentsDocs.limit(postDetailsEntity.limit!)
                   : commentsDocs)
               : commentsDocs;

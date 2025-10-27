@@ -6,8 +6,9 @@ part of 'post_entity_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PostEntityPayload _$$_PostEntityPayloadFromJson(Map<String, dynamic> json) =>
-    _$_PostEntityPayload(
+_$PostEntityPayloadImpl _$$PostEntityPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PostEntityPayloadImpl(
       postID: json['postID'] as String?,
       createdAt: json['created_at'] as Object,
       userID: json['userID'] as String,
@@ -24,8 +25,8 @@ _$_PostEntityPayload _$$_PostEntityPayloadFromJson(Map<String, dynamic> json) =>
       ),
     );
 
-Map<String, dynamic> _$$_PostEntityPayloadToJson(
-        _$_PostEntityPayload instance) =>
+Map<String, dynamic> _$$PostEntityPayloadImplToJson(
+        _$PostEntityPayloadImpl instance) =>
     <String, dynamic>{
       'postID': instance.postID,
       'created_at': instance.createdAt,

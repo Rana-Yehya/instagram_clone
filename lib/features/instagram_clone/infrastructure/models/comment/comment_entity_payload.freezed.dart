@@ -12,7 +12,7 @@ part of 'comment_entity_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CommentEntityPayload _$CommentEntityPayloadFromJson(Map<String, dynamic> json) {
   return _CommentEntityPayload.fromJson(json);
@@ -101,11 +101,11 @@ class _$CommentEntityPayloadCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CommentEntityPayloadCopyWith<$Res>
+abstract class _$$CommentEntityPayloadImplCopyWith<$Res>
     implements $CommentEntityPayloadCopyWith<$Res> {
-  factory _$$_CommentEntityPayloadCopyWith(_$_CommentEntityPayload value,
-          $Res Function(_$_CommentEntityPayload) then) =
-      __$$_CommentEntityPayloadCopyWithImpl<$Res>;
+  factory _$$CommentEntityPayloadImplCopyWith(_$CommentEntityPayloadImpl value,
+          $Res Function(_$CommentEntityPayloadImpl) then) =
+      __$$CommentEntityPayloadImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -121,11 +121,11 @@ abstract class _$$_CommentEntityPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CommentEntityPayloadCopyWithImpl<$Res>
-    extends _$CommentEntityPayloadCopyWithImpl<$Res, _$_CommentEntityPayload>
-    implements _$$_CommentEntityPayloadCopyWith<$Res> {
-  __$$_CommentEntityPayloadCopyWithImpl(_$_CommentEntityPayload _value,
-      $Res Function(_$_CommentEntityPayload) _then)
+class __$$CommentEntityPayloadImplCopyWithImpl<$Res>
+    extends _$CommentEntityPayloadCopyWithImpl<$Res, _$CommentEntityPayloadImpl>
+    implements _$$CommentEntityPayloadImplCopyWith<$Res> {
+  __$$CommentEntityPayloadImplCopyWithImpl(_$CommentEntityPayloadImpl _value,
+      $Res Function(_$CommentEntityPayloadImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +137,7 @@ class __$$_CommentEntityPayloadCopyWithImpl<$Res>
     Object? userID = null,
     Object? postID = null,
   }) {
-    return _then(_$_CommentEntityPayload(
+    return _then(_$CommentEntityPayloadImpl(
       commentID: freezed == commentID
           ? _value.commentID
           : commentID // ignore: cast_nullable_to_non_nullable
@@ -161,8 +161,8 @@ class __$$_CommentEntityPayloadCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CommentEntityPayload extends _CommentEntityPayload {
-  const _$_CommentEntityPayload(
+class _$CommentEntityPayloadImpl extends _CommentEntityPayload {
+  const _$CommentEntityPayloadImpl(
       {@JsonKey(name: Constants.commentID) this.commentID,
       @JsonKey(name: Constants.comment) required this.comment,
       @JsonKey(name: Constants.createdAt)
@@ -174,8 +174,8 @@ class _$_CommentEntityPayload extends _CommentEntityPayload {
       @JsonKey(name: Constants.postID) required this.postID})
       : super._();
 
-  factory _$_CommentEntityPayload.fromJson(Map<String, dynamic> json) =>
-      _$$_CommentEntityPayloadFromJson(json);
+  factory _$CommentEntityPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CommentEntityPayloadImplFromJson(json);
 
   @override
   @JsonKey(name: Constants.commentID)
@@ -202,10 +202,10 @@ class _$_CommentEntityPayload extends _CommentEntityPayload {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CommentEntityPayload &&
+            other is _$CommentEntityPayloadImpl &&
             (identical(other.commentID, commentID) ||
                 other.commentID == commentID) &&
             (identical(other.comment, comment) || other.comment == comment) &&
@@ -222,13 +222,14 @@ class _$_CommentEntityPayload extends _CommentEntityPayload {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CommentEntityPayloadCopyWith<_$_CommentEntityPayload> get copyWith =>
-      __$$_CommentEntityPayloadCopyWithImpl<_$_CommentEntityPayload>(
-          this, _$identity);
+  _$$CommentEntityPayloadImplCopyWith<_$CommentEntityPayloadImpl>
+      get copyWith =>
+          __$$CommentEntityPayloadImplCopyWithImpl<_$CommentEntityPayloadImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CommentEntityPayloadToJson(
+    return _$$CommentEntityPayloadImplToJson(
       this,
     );
   }
@@ -245,11 +246,11 @@ abstract class _CommentEntityPayload extends CommentEntityPayload {
           required final Object createdAt,
           @JsonKey(name: Constants.userID) required final String userID,
           @JsonKey(name: Constants.postID) required final String postID}) =
-      _$_CommentEntityPayload;
+      _$CommentEntityPayloadImpl;
   const _CommentEntityPayload._() : super._();
 
   factory _CommentEntityPayload.fromJson(Map<String, dynamic> json) =
-      _$_CommentEntityPayload.fromJson;
+      _$CommentEntityPayloadImpl.fromJson;
 
   @override
   @JsonKey(name: Constants.commentID)
@@ -271,6 +272,6 @@ abstract class _CommentEntityPayload extends CommentEntityPayload {
   String get postID;
   @override
   @JsonKey(ignore: true)
-  _$$_CommentEntityPayloadCopyWith<_$_CommentEntityPayload> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CommentEntityPayloadImplCopyWith<_$CommentEntityPayloadImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

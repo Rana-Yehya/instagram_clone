@@ -12,7 +12,7 @@ part of 'likes_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LikesEntity {
@@ -63,22 +63,22 @@ class _$LikesEntityCopyWithImpl<$Res, $Val extends LikesEntity>
 }
 
 /// @nodoc
-abstract class _$$_LikesEntityCopyWith<$Res>
+abstract class _$$LikesEntityImplCopyWith<$Res>
     implements $LikesEntityCopyWith<$Res> {
-  factory _$$_LikesEntityCopyWith(
-          _$_LikesEntity value, $Res Function(_$_LikesEntity) then) =
-      __$$_LikesEntityCopyWithImpl<$Res>;
+  factory _$$LikesEntityImplCopyWith(
+          _$LikesEntityImpl value, $Res Function(_$LikesEntityImpl) then) =
+      __$$LikesEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String postID, UniqueId likedBy});
 }
 
 /// @nodoc
-class __$$_LikesEntityCopyWithImpl<$Res>
-    extends _$LikesEntityCopyWithImpl<$Res, _$_LikesEntity>
-    implements _$$_LikesEntityCopyWith<$Res> {
-  __$$_LikesEntityCopyWithImpl(
-      _$_LikesEntity _value, $Res Function(_$_LikesEntity) _then)
+class __$$LikesEntityImplCopyWithImpl<$Res>
+    extends _$LikesEntityCopyWithImpl<$Res, _$LikesEntityImpl>
+    implements _$$LikesEntityImplCopyWith<$Res> {
+  __$$LikesEntityImplCopyWithImpl(
+      _$LikesEntityImpl _value, $Res Function(_$LikesEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_LikesEntityCopyWithImpl<$Res>
     Object? postID = null,
     Object? likedBy = null,
   }) {
-    return _then(_$_LikesEntity(
+    return _then(_$LikesEntityImpl(
       postID: null == postID
           ? _value.postID
           : postID // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_LikesEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LikesEntity implements _LikesEntity {
-  const _$_LikesEntity({required this.postID, required this.likedBy});
+class _$LikesEntityImpl implements _LikesEntity {
+  const _$LikesEntityImpl({required this.postID, required this.likedBy});
 
   @override
   final String postID;
@@ -116,10 +116,10 @@ class _$_LikesEntity implements _LikesEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LikesEntity &&
+            other is _$LikesEntityImpl &&
             (identical(other.postID, postID) || other.postID == postID) &&
             (identical(other.likedBy, likedBy) || other.likedBy == likedBy));
   }
@@ -130,14 +130,14 @@ class _$_LikesEntity implements _LikesEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LikesEntityCopyWith<_$_LikesEntity> get copyWith =>
-      __$$_LikesEntityCopyWithImpl<_$_LikesEntity>(this, _$identity);
+  _$$LikesEntityImplCopyWith<_$LikesEntityImpl> get copyWith =>
+      __$$LikesEntityImplCopyWithImpl<_$LikesEntityImpl>(this, _$identity);
 }
 
 abstract class _LikesEntity implements LikesEntity {
   const factory _LikesEntity(
       {required final String postID,
-      required final UniqueId likedBy}) = _$_LikesEntity;
+      required final UniqueId likedBy}) = _$LikesEntityImpl;
 
   @override
   String get postID;
@@ -145,6 +145,6 @@ abstract class _LikesEntity implements LikesEntity {
   UniqueId get likedBy;
   @override
   @JsonKey(ignore: true)
-  _$$_LikesEntityCopyWith<_$_LikesEntity> get copyWith =>
+  _$$LikesEntityImplCopyWith<_$LikesEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

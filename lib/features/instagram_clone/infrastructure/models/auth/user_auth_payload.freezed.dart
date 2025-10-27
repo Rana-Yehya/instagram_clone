@@ -12,7 +12,7 @@ part of 'user_auth_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserAuthPayload _$UserAuthPayloadFromJson(Map<String, dynamic> json) {
   return _UserAuthPayload.fromJson(json);
@@ -83,11 +83,11 @@ class _$UserAuthPayloadCopyWithImpl<$Res, $Val extends UserAuthPayload>
 }
 
 /// @nodoc
-abstract class _$$_UserAuthPayloadCopyWith<$Res>
+abstract class _$$UserAuthPayloadImplCopyWith<$Res>
     implements $UserAuthPayloadCopyWith<$Res> {
-  factory _$$_UserAuthPayloadCopyWith(
-          _$_UserAuthPayload value, $Res Function(_$_UserAuthPayload) then) =
-      __$$_UserAuthPayloadCopyWithImpl<$Res>;
+  factory _$$UserAuthPayloadImplCopyWith(_$UserAuthPayloadImpl value,
+          $Res Function(_$UserAuthPayloadImpl) then) =
+      __$$UserAuthPayloadImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -97,11 +97,11 @@ abstract class _$$_UserAuthPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UserAuthPayloadCopyWithImpl<$Res>
-    extends _$UserAuthPayloadCopyWithImpl<$Res, _$_UserAuthPayload>
-    implements _$$_UserAuthPayloadCopyWith<$Res> {
-  __$$_UserAuthPayloadCopyWithImpl(
-      _$_UserAuthPayload _value, $Res Function(_$_UserAuthPayload) _then)
+class __$$UserAuthPayloadImplCopyWithImpl<$Res>
+    extends _$UserAuthPayloadCopyWithImpl<$Res, _$UserAuthPayloadImpl>
+    implements _$$UserAuthPayloadImplCopyWith<$Res> {
+  __$$UserAuthPayloadImplCopyWithImpl(
+      _$UserAuthPayloadImpl _value, $Res Function(_$UserAuthPayloadImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -111,7 +111,7 @@ class __$$_UserAuthPayloadCopyWithImpl<$Res>
     Object? displayName = freezed,
     Object? email = freezed,
   }) {
-    return _then(_$_UserAuthPayload(
+    return _then(_$UserAuthPayloadImpl(
       userID: null == userID
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
@@ -130,15 +130,15 @@ class __$$_UserAuthPayloadCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserAuthPayload extends _UserAuthPayload {
-  const _$_UserAuthPayload(
+class _$UserAuthPayloadImpl extends _UserAuthPayload {
+  const _$UserAuthPayloadImpl(
       {@JsonKey(name: Constants.userID) required this.userID,
       @JsonKey(name: Constants.displayName) required this.displayName,
       @JsonKey(name: Constants.email) required this.email})
       : super._();
 
-  factory _$_UserAuthPayload.fromJson(Map<String, dynamic> json) =>
-      _$$_UserAuthPayloadFromJson(json);
+  factory _$UserAuthPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UserAuthPayloadImplFromJson(json);
 
 //@JsonKey(ignore: true, name: Constants.userID) required String userID,
 //@JsonKey(name: Constants.displayName) required String? displayName,
@@ -159,10 +159,10 @@ class _$_UserAuthPayload extends _UserAuthPayload {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserAuthPayload &&
+            other is _$UserAuthPayloadImpl &&
             (identical(other.userID, userID) || other.userID == userID) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
@@ -176,12 +176,13 @@ class _$_UserAuthPayload extends _UserAuthPayload {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserAuthPayloadCopyWith<_$_UserAuthPayload> get copyWith =>
-      __$$_UserAuthPayloadCopyWithImpl<_$_UserAuthPayload>(this, _$identity);
+  _$$UserAuthPayloadImplCopyWith<_$UserAuthPayloadImpl> get copyWith =>
+      __$$UserAuthPayloadImplCopyWithImpl<_$UserAuthPayloadImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserAuthPayloadToJson(
+    return _$$UserAuthPayloadImplToJson(
       this,
     );
   }
@@ -192,11 +193,11 @@ abstract class _UserAuthPayload extends UserAuthPayload {
       {@JsonKey(name: Constants.userID) required final String userID,
       @JsonKey(name: Constants.displayName) required final String? displayName,
       @JsonKey(name: Constants.email)
-      required final String? email}) = _$_UserAuthPayload;
+      required final String? email}) = _$UserAuthPayloadImpl;
   const _UserAuthPayload._() : super._();
 
   factory _UserAuthPayload.fromJson(Map<String, dynamic> json) =
-      _$_UserAuthPayload.fromJson;
+      _$UserAuthPayloadImpl.fromJson;
 
   @override //@JsonKey(ignore: true, name: Constants.userID) required String userID,
 //@JsonKey(name: Constants.displayName) required String? displayName,
@@ -211,6 +212,6 @@ abstract class _UserAuthPayload extends UserAuthPayload {
   String? get email;
   @override
   @JsonKey(ignore: true)
-  _$$_UserAuthPayloadCopyWith<_$_UserAuthPayload> get copyWith =>
+  _$$UserAuthPayloadImplCopyWith<_$UserAuthPayloadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'post_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PostEntity {
@@ -135,11 +135,11 @@ class _$PostEntityCopyWithImpl<$Res, $Val extends PostEntity>
 }
 
 /// @nodoc
-abstract class _$$_PostEntityCopyWith<$Res>
+abstract class _$$PostEntityImplCopyWith<$Res>
     implements $PostEntityCopyWith<$Res> {
-  factory _$$_PostEntityCopyWith(
-          _$_PostEntity value, $Res Function(_$_PostEntity) then) =
-      __$$_PostEntityCopyWithImpl<$Res>;
+  factory _$$PostEntityImplCopyWith(
+          _$PostEntityImpl value, $Res Function(_$PostEntityImpl) then) =
+      __$$PostEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -158,11 +158,11 @@ abstract class _$$_PostEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PostEntityCopyWithImpl<$Res>
-    extends _$PostEntityCopyWithImpl<$Res, _$_PostEntity>
-    implements _$$_PostEntityCopyWith<$Res> {
-  __$$_PostEntityCopyWithImpl(
-      _$_PostEntity _value, $Res Function(_$_PostEntity) _then)
+class __$$PostEntityImplCopyWithImpl<$Res>
+    extends _$PostEntityCopyWithImpl<$Res, _$PostEntityImpl>
+    implements _$$PostEntityImplCopyWith<$Res> {
+  __$$PostEntityImplCopyWithImpl(
+      _$PostEntityImpl _value, $Res Function(_$PostEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -181,7 +181,7 @@ class __$$_PostEntityCopyWithImpl<$Res>
     Object? originalFileStorageID = null,
     Object? postSettings = null,
   }) {
-    return _then(_$_PostEntity(
+    return _then(_$PostEntityImpl(
       postID: null == postID
           ? _value.postID
           : postID // ignore: cast_nullable_to_non_nullable
@@ -236,8 +236,8 @@ class __$$_PostEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PostEntity extends _PostEntity {
-  const _$_PostEntity(
+class _$PostEntityImpl extends _PostEntity {
+  const _$PostEntityImpl(
       {required this.postID,
       required this.userID,
       required this.message,
@@ -289,10 +289,10 @@ class _$_PostEntity extends _PostEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostEntity &&
+            other is _$PostEntityImpl &&
             (identical(other.postID, postID) || other.postID == postID) &&
             (identical(other.userID, userID) || other.userID == userID) &&
             (identical(other.message, message) || other.message == message) &&
@@ -334,8 +334,8 @@ class _$_PostEntity extends _PostEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>
-      __$$_PostEntityCopyWithImpl<_$_PostEntity>(this, _$identity);
+  _$$PostEntityImplCopyWith<_$PostEntityImpl> get copyWith =>
+      __$$PostEntityImplCopyWithImpl<_$PostEntityImpl>(this, _$identity);
 }
 
 abstract class _PostEntity extends PostEntity {
@@ -351,7 +351,7 @@ abstract class _PostEntity extends PostEntity {
       required final double aspectRatio,
       required final String thumbnailStorageID,
       required final String originalFileStorageID,
-      required final Map<PostSetting, bool> postSettings}) = _$_PostEntity;
+      required final Map<PostSetting, bool> postSettings}) = _$PostEntityImpl;
   const _PostEntity._() : super._();
 
   @override
@@ -380,6 +380,6 @@ abstract class _PostEntity extends PostEntity {
   Map<PostSetting, bool> get postSettings;
   @override
   @JsonKey(ignore: true)
-  _$$_PostEntityCopyWith<_$_PostEntity> get copyWith =>
+  _$$PostEntityImplCopyWith<_$PostEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

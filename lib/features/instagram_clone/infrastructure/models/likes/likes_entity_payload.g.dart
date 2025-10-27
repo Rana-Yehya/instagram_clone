@@ -6,16 +6,16 @@ part of 'likes_entity_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LikesEntityPayload _$$_LikesEntityPayloadFromJson(
+_$LikesEntityPayloadImpl _$$LikesEntityPayloadImplFromJson(
         Map<String, dynamic> json) =>
-    _$_LikesEntityPayload(
+    _$LikesEntityPayloadImpl(
       postID: json['postID'] as String,
       userID: json['userID'] as String,
       createdAt: json['created_at'] as Object,
     );
 
-Map<String, dynamic> _$$_LikesEntityPayloadToJson(
-        _$_LikesEntityPayload instance) =>
+Map<String, dynamic> _$$LikesEntityPayloadImplToJson(
+        _$LikesEntityPayloadImpl instance) =>
     <String, dynamic>{
       'postID': instance.postID,
       'userID': instance.userID,

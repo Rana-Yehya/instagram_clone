@@ -6,14 +6,16 @@ part of 'user_auth_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserAuthPayload _$$_UserAuthPayloadFromJson(Map<String, dynamic> json) =>
-    _$_UserAuthPayload(
+_$UserAuthPayloadImpl _$$UserAuthPayloadImplFromJson(
+        Map<String, dynamic> json) =>
+    _$UserAuthPayloadImpl(
       userID: json['userID'] as String,
       displayName: json['display_name'] as String?,
       email: json['email'] as String?,
     );
 
-Map<String, dynamic> _$$_UserAuthPayloadToJson(_$_UserAuthPayload instance) =>
+Map<String, dynamic> _$$UserAuthPayloadImplToJson(
+        _$UserAuthPayloadImpl instance) =>
     <String, dynamic>{
       'userID': instance.userID,
       'display_name': instance.displayName,

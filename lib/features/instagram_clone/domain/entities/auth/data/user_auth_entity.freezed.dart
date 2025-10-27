@@ -12,7 +12,7 @@ part of 'user_auth_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$UserAuthEntity {
@@ -69,22 +69,22 @@ class _$UserAuthEntityCopyWithImpl<$Res, $Val extends UserAuthEntity>
 }
 
 /// @nodoc
-abstract class _$$_UserAuthEntityCopyWith<$Res>
+abstract class _$$UserAuthEntityImplCopyWith<$Res>
     implements $UserAuthEntityCopyWith<$Res> {
-  factory _$$_UserAuthEntityCopyWith(
-          _$_UserAuthEntity value, $Res Function(_$_UserAuthEntity) then) =
-      __$$_UserAuthEntityCopyWithImpl<$Res>;
+  factory _$$UserAuthEntityImplCopyWith(_$UserAuthEntityImpl value,
+          $Res Function(_$UserAuthEntityImpl) then) =
+      __$$UserAuthEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({UniqueId userID, String? email, String? displayName});
 }
 
 /// @nodoc
-class __$$_UserAuthEntityCopyWithImpl<$Res>
-    extends _$UserAuthEntityCopyWithImpl<$Res, _$_UserAuthEntity>
-    implements _$$_UserAuthEntityCopyWith<$Res> {
-  __$$_UserAuthEntityCopyWithImpl(
-      _$_UserAuthEntity _value, $Res Function(_$_UserAuthEntity) _then)
+class __$$UserAuthEntityImplCopyWithImpl<$Res>
+    extends _$UserAuthEntityCopyWithImpl<$Res, _$UserAuthEntityImpl>
+    implements _$$UserAuthEntityImplCopyWith<$Res> {
+  __$$UserAuthEntityImplCopyWithImpl(
+      _$UserAuthEntityImpl _value, $Res Function(_$UserAuthEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_UserAuthEntityCopyWithImpl<$Res>
     Object? email = freezed,
     Object? displayName = freezed,
   }) {
-    return _then(_$_UserAuthEntity(
+    return _then(_$UserAuthEntityImpl(
       userID: null == userID
           ? _value.userID
           : userID // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_UserAuthEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UserAuthEntity extends _UserAuthEntity {
-  const _$_UserAuthEntity(
+class _$UserAuthEntityImpl extends _UserAuthEntity {
+  const _$UserAuthEntityImpl(
       {required this.userID, required this.email, required this.displayName})
       : super._();
 
@@ -131,10 +131,10 @@ class _$_UserAuthEntity extends _UserAuthEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserAuthEntity &&
+            other is _$UserAuthEntityImpl &&
             (identical(other.userID, userID) || other.userID == userID) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.displayName, displayName) ||
@@ -147,15 +147,16 @@ class _$_UserAuthEntity extends _UserAuthEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserAuthEntityCopyWith<_$_UserAuthEntity> get copyWith =>
-      __$$_UserAuthEntityCopyWithImpl<_$_UserAuthEntity>(this, _$identity);
+  _$$UserAuthEntityImplCopyWith<_$UserAuthEntityImpl> get copyWith =>
+      __$$UserAuthEntityImplCopyWithImpl<_$UserAuthEntityImpl>(
+          this, _$identity);
 }
 
 abstract class _UserAuthEntity extends UserAuthEntity {
   const factory _UserAuthEntity(
       {required final UniqueId userID,
       required final String? email,
-      required final String? displayName}) = _$_UserAuthEntity;
+      required final String? displayName}) = _$UserAuthEntityImpl;
   const _UserAuthEntity._() : super._();
 
   @override
@@ -166,6 +167,6 @@ abstract class _UserAuthEntity extends UserAuthEntity {
   String? get displayName;
   @override
   @JsonKey(ignore: true)
-  _$$_UserAuthEntityCopyWith<_$_UserAuthEntity> get copyWith =>
+  _$$UserAuthEntityImplCopyWith<_$UserAuthEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

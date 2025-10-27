@@ -12,7 +12,7 @@ part of 'cloud_storage_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CloudStorageFailure {
@@ -87,23 +87,25 @@ class _$CloudStorageFailureCopyWithImpl<$Res, $Val extends CloudStorageFailure>
 }
 
 /// @nodoc
-abstract class _$$UnknownCopyWith<$Res> {
-  factory _$$UnknownCopyWith(_$Unknown value, $Res Function(_$Unknown) then) =
-      __$$UnknownCopyWithImpl<$Res>;
+abstract class _$$UnknownImplCopyWith<$Res> {
+  factory _$$UnknownImplCopyWith(
+          _$UnknownImpl value, $Res Function(_$UnknownImpl) then) =
+      __$$UnknownImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UnknownCopyWithImpl<$Res>
-    extends _$CloudStorageFailureCopyWithImpl<$Res, _$Unknown>
-    implements _$$UnknownCopyWith<$Res> {
-  __$$UnknownCopyWithImpl(_$Unknown _value, $Res Function(_$Unknown) _then)
+class __$$UnknownImplCopyWithImpl<$Res>
+    extends _$CloudStorageFailureCopyWithImpl<$Res, _$UnknownImpl>
+    implements _$$UnknownImplCopyWith<$Res> {
+  __$$UnknownImplCopyWithImpl(
+      _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Unknown implements Unknown {
-  const _$Unknown();
+class _$UnknownImpl implements Unknown {
+  const _$UnknownImpl();
 
   @override
   String toString() {
@@ -111,9 +113,9 @@ class _$Unknown implements Unknown {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Unknown);
+        (other.runtimeType == runtimeType && other is _$UnknownImpl);
   }
 
   @override
@@ -195,29 +197,29 @@ class _$Unknown implements Unknown {
 }
 
 abstract class Unknown implements CloudStorageFailure {
-  const factory Unknown() = _$Unknown;
+  const factory Unknown() = _$UnknownImpl;
 }
 
 /// @nodoc
-abstract class _$$ObjectNotFoundCopyWith<$Res> {
-  factory _$$ObjectNotFoundCopyWith(
-          _$ObjectNotFound value, $Res Function(_$ObjectNotFound) then) =
-      __$$ObjectNotFoundCopyWithImpl<$Res>;
+abstract class _$$ObjectNotFoundImplCopyWith<$Res> {
+  factory _$$ObjectNotFoundImplCopyWith(_$ObjectNotFoundImpl value,
+          $Res Function(_$ObjectNotFoundImpl) then) =
+      __$$ObjectNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ObjectNotFoundCopyWithImpl<$Res>
-    extends _$CloudStorageFailureCopyWithImpl<$Res, _$ObjectNotFound>
-    implements _$$ObjectNotFoundCopyWith<$Res> {
-  __$$ObjectNotFoundCopyWithImpl(
-      _$ObjectNotFound _value, $Res Function(_$ObjectNotFound) _then)
+class __$$ObjectNotFoundImplCopyWithImpl<$Res>
+    extends _$CloudStorageFailureCopyWithImpl<$Res, _$ObjectNotFoundImpl>
+    implements _$$ObjectNotFoundImplCopyWith<$Res> {
+  __$$ObjectNotFoundImplCopyWithImpl(
+      _$ObjectNotFoundImpl _value, $Res Function(_$ObjectNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$ObjectNotFound implements ObjectNotFound {
-  const _$ObjectNotFound();
+class _$ObjectNotFoundImpl implements ObjectNotFound {
+  const _$ObjectNotFoundImpl();
 
   @override
   String toString() {
@@ -225,9 +227,9 @@ class _$ObjectNotFound implements ObjectNotFound {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ObjectNotFound);
+        (other.runtimeType == runtimeType && other is _$ObjectNotFoundImpl);
   }
 
   @override
@@ -309,29 +311,29 @@ class _$ObjectNotFound implements ObjectNotFound {
 }
 
 abstract class ObjectNotFound implements CloudStorageFailure {
-  const factory ObjectNotFound() = _$ObjectNotFound;
+  const factory ObjectNotFound() = _$ObjectNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$CancelledByUserCopyWith<$Res> {
-  factory _$$CancelledByUserCopyWith(
-          _$CancelledByUser value, $Res Function(_$CancelledByUser) then) =
-      __$$CancelledByUserCopyWithImpl<$Res>;
+abstract class _$$CancelledByUserImplCopyWith<$Res> {
+  factory _$$CancelledByUserImplCopyWith(_$CancelledByUserImpl value,
+          $Res Function(_$CancelledByUserImpl) then) =
+      __$$CancelledByUserImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CancelledByUserCopyWithImpl<$Res>
-    extends _$CloudStorageFailureCopyWithImpl<$Res, _$CancelledByUser>
-    implements _$$CancelledByUserCopyWith<$Res> {
-  __$$CancelledByUserCopyWithImpl(
-      _$CancelledByUser _value, $Res Function(_$CancelledByUser) _then)
+class __$$CancelledByUserImplCopyWithImpl<$Res>
+    extends _$CloudStorageFailureCopyWithImpl<$Res, _$CancelledByUserImpl>
+    implements _$$CancelledByUserImplCopyWith<$Res> {
+  __$$CancelledByUserImplCopyWithImpl(
+      _$CancelledByUserImpl _value, $Res Function(_$CancelledByUserImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CancelledByUser implements CancelledByUser {
-  const _$CancelledByUser();
+class _$CancelledByUserImpl implements CancelledByUser {
+  const _$CancelledByUserImpl();
 
   @override
   String toString() {
@@ -339,9 +341,9 @@ class _$CancelledByUser implements CancelledByUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CancelledByUser);
+        (other.runtimeType == runtimeType && other is _$CancelledByUserImpl);
   }
 
   @override
@@ -423,29 +425,29 @@ class _$CancelledByUser implements CancelledByUser {
 }
 
 abstract class CancelledByUser implements CloudStorageFailure {
-  const factory CancelledByUser() = _$CancelledByUser;
+  const factory CancelledByUser() = _$CancelledByUserImpl;
 }
 
 /// @nodoc
-abstract class _$$UnauthorizedCopyWith<$Res> {
-  factory _$$UnauthorizedCopyWith(
-          _$Unauthorized value, $Res Function(_$Unauthorized) then) =
-      __$$UnauthorizedCopyWithImpl<$Res>;
+abstract class _$$UnauthorizedImplCopyWith<$Res> {
+  factory _$$UnauthorizedImplCopyWith(
+          _$UnauthorizedImpl value, $Res Function(_$UnauthorizedImpl) then) =
+      __$$UnauthorizedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$UnauthorizedCopyWithImpl<$Res>
-    extends _$CloudStorageFailureCopyWithImpl<$Res, _$Unauthorized>
-    implements _$$UnauthorizedCopyWith<$Res> {
-  __$$UnauthorizedCopyWithImpl(
-      _$Unauthorized _value, $Res Function(_$Unauthorized) _then)
+class __$$UnauthorizedImplCopyWithImpl<$Res>
+    extends _$CloudStorageFailureCopyWithImpl<$Res, _$UnauthorizedImpl>
+    implements _$$UnauthorizedImplCopyWith<$Res> {
+  __$$UnauthorizedImplCopyWithImpl(
+      _$UnauthorizedImpl _value, $Res Function(_$UnauthorizedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Unauthorized implements Unauthorized {
-  const _$Unauthorized();
+class _$UnauthorizedImpl implements Unauthorized {
+  const _$UnauthorizedImpl();
 
   @override
   String toString() {
@@ -453,9 +455,9 @@ class _$Unauthorized implements Unauthorized {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Unauthorized);
+        (other.runtimeType == runtimeType && other is _$UnauthorizedImpl);
   }
 
   @override
@@ -537,5 +539,5 @@ class _$Unauthorized implements Unauthorized {
 }
 
 abstract class Unauthorized implements CloudStorageFailure {
-  const factory Unauthorized() = _$Unauthorized;
+  const factory Unauthorized() = _$UnauthorizedImpl;
 }

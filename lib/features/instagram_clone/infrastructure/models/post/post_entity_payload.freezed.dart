@@ -12,7 +12,7 @@ part of 'post_entity_payload.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 PostEntityPayload _$PostEntityPayloadFromJson(Map<String, dynamic> json) {
   return _PostEntityPayload.fromJson(json);
@@ -158,11 +158,11 @@ class _$PostEntityPayloadCopyWithImpl<$Res, $Val extends PostEntityPayload>
 }
 
 /// @nodoc
-abstract class _$$_PostEntityPayloadCopyWith<$Res>
+abstract class _$$PostEntityPayloadImplCopyWith<$Res>
     implements $PostEntityPayloadCopyWith<$Res> {
-  factory _$$_PostEntityPayloadCopyWith(_$_PostEntityPayload value,
-          $Res Function(_$_PostEntityPayload) then) =
-      __$$_PostEntityPayloadCopyWithImpl<$Res>;
+  factory _$$PostEntityPayloadImplCopyWith(_$PostEntityPayloadImpl value,
+          $Res Function(_$PostEntityPayloadImpl) then) =
+      __$$PostEntityPayloadImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -187,11 +187,11 @@ abstract class _$$_PostEntityPayloadCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PostEntityPayloadCopyWithImpl<$Res>
-    extends _$PostEntityPayloadCopyWithImpl<$Res, _$_PostEntityPayload>
-    implements _$$_PostEntityPayloadCopyWith<$Res> {
-  __$$_PostEntityPayloadCopyWithImpl(
-      _$_PostEntityPayload _value, $Res Function(_$_PostEntityPayload) _then)
+class __$$PostEntityPayloadImplCopyWithImpl<$Res>
+    extends _$PostEntityPayloadCopyWithImpl<$Res, _$PostEntityPayloadImpl>
+    implements _$$PostEntityPayloadImplCopyWith<$Res> {
+  __$$PostEntityPayloadImplCopyWithImpl(_$PostEntityPayloadImpl _value,
+      $Res Function(_$PostEntityPayloadImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -210,7 +210,7 @@ class __$$_PostEntityPayloadCopyWithImpl<$Res>
     Object? originalFileStorageID = null,
     Object? postSettings = null,
   }) {
-    return _then(_$_PostEntityPayload(
+    return _then(_$PostEntityPayloadImpl(
       postID: freezed == postID
           ? _value.postID
           : postID // ignore: cast_nullable_to_non_nullable
@@ -262,8 +262,8 @@ class __$$_PostEntityPayloadCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PostEntityPayload extends _PostEntityPayload {
-  const _$_PostEntityPayload(
+class _$PostEntityPayloadImpl extends _PostEntityPayload {
+  const _$PostEntityPayloadImpl(
       {@JsonKey(name: Constants.postID) this.postID,
       @JsonKey(name: Constants.createdAt)
       @JsonKey(
@@ -286,8 +286,8 @@ class _$_PostEntityPayload extends _PostEntityPayload {
       : _postSettings = postSettings,
         super._();
 
-  factory _$_PostEntityPayload.fromJson(Map<String, dynamic> json) =>
-      _$$_PostEntityPayloadFromJson(json);
+  factory _$PostEntityPayloadImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PostEntityPayloadImplFromJson(json);
 
   @override
   @JsonKey(name: Constants.postID)
@@ -340,10 +340,10 @@ class _$_PostEntityPayload extends _PostEntityPayload {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostEntityPayload &&
+            other is _$PostEntityPayloadImpl &&
             (identical(other.postID, postID) || other.postID == postID) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             (identical(other.userID, userID) || other.userID == userID) &&
@@ -385,13 +385,13 @@ class _$_PostEntityPayload extends _PostEntityPayload {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostEntityPayloadCopyWith<_$_PostEntityPayload> get copyWith =>
-      __$$_PostEntityPayloadCopyWithImpl<_$_PostEntityPayload>(
+  _$$PostEntityPayloadImplCopyWith<_$PostEntityPayloadImpl> get copyWith =>
+      __$$PostEntityPayloadImplCopyWithImpl<_$PostEntityPayloadImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PostEntityPayloadToJson(
+    return _$$PostEntityPayloadImplToJson(
       this,
     );
   }
@@ -418,11 +418,11 @@ abstract class _PostEntityPayload extends PostEntityPayload {
       required final String originalFileStorageID,
       @JsonKey(name: Constants.postSettings)
       required final Map<PostSetting, bool>
-          postSettings}) = _$_PostEntityPayload;
+          postSettings}) = _$PostEntityPayloadImpl;
   const _PostEntityPayload._() : super._();
 
   factory _PostEntityPayload.fromJson(Map<String, dynamic> json) =
-      _$_PostEntityPayload.fromJson;
+      _$PostEntityPayloadImpl.fromJson;
 
   @override
   @JsonKey(name: Constants.postID)
@@ -465,6 +465,6 @@ abstract class _PostEntityPayload extends PostEntityPayload {
   Map<PostSetting, bool> get postSettings;
   @override
   @JsonKey(ignore: true)
-  _$$_PostEntityPayloadCopyWith<_$_PostEntityPayload> get copyWith =>
+  _$$PostEntityPayloadImplCopyWith<_$PostEntityPayloadImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

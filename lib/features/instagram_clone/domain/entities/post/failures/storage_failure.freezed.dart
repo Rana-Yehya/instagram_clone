@@ -12,7 +12,7 @@ part of 'storage_failure.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$StorageFailure {
@@ -88,25 +88,25 @@ class _$StorageFailureCopyWithImpl<$Res, $Val extends StorageFailure>
 }
 
 /// @nodoc
-abstract class _$$_UnexpectedFailureCopyWith<$Res> {
-  factory _$$_UnexpectedFailureCopyWith(_$_UnexpectedFailure value,
-          $Res Function(_$_UnexpectedFailure) then) =
-      __$$_UnexpectedFailureCopyWithImpl<$Res>;
+abstract class _$$UnexpectedFailureImplCopyWith<$Res> {
+  factory _$$UnexpectedFailureImplCopyWith(_$UnexpectedFailureImpl value,
+          $Res Function(_$UnexpectedFailureImpl) then) =
+      __$$UnexpectedFailureImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_UnexpectedFailureCopyWithImpl<$Res>
-    extends _$StorageFailureCopyWithImpl<$Res, _$_UnexpectedFailure>
-    implements _$$_UnexpectedFailureCopyWith<$Res> {
-  __$$_UnexpectedFailureCopyWithImpl(
-      _$_UnexpectedFailure _value, $Res Function(_$_UnexpectedFailure) _then)
+class __$$UnexpectedFailureImplCopyWithImpl<$Res>
+    extends _$StorageFailureCopyWithImpl<$Res, _$UnexpectedFailureImpl>
+    implements _$$UnexpectedFailureImplCopyWith<$Res> {
+  __$$UnexpectedFailureImplCopyWithImpl(_$UnexpectedFailureImpl _value,
+      $Res Function(_$UnexpectedFailureImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_UnexpectedFailure implements _UnexpectedFailure {
-  const _$_UnexpectedFailure();
+class _$UnexpectedFailureImpl implements _UnexpectedFailure {
+  const _$UnexpectedFailureImpl();
 
   @override
   String toString() {
@@ -114,9 +114,9 @@ class _$_UnexpectedFailure implements _UnexpectedFailure {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UnexpectedFailure);
+        (other.runtimeType == runtimeType && other is _$UnexpectedFailureImpl);
   }
 
   @override
@@ -199,29 +199,29 @@ class _$_UnexpectedFailure implements _UnexpectedFailure {
 }
 
 abstract class _UnexpectedFailure implements StorageFailure {
-  const factory _UnexpectedFailure() = _$_UnexpectedFailure;
+  const factory _UnexpectedFailure() = _$UnexpectedFailureImpl;
 }
 
 /// @nodoc
-abstract class _$$_PermissionDeniedCopyWith<$Res> {
-  factory _$$_PermissionDeniedCopyWith(
-          _$_PermissionDenied value, $Res Function(_$_PermissionDenied) then) =
-      __$$_PermissionDeniedCopyWithImpl<$Res>;
+abstract class _$$PermissionDeniedImplCopyWith<$Res> {
+  factory _$$PermissionDeniedImplCopyWith(_$PermissionDeniedImpl value,
+          $Res Function(_$PermissionDeniedImpl) then) =
+      __$$PermissionDeniedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_PermissionDeniedCopyWithImpl<$Res>
-    extends _$StorageFailureCopyWithImpl<$Res, _$_PermissionDenied>
-    implements _$$_PermissionDeniedCopyWith<$Res> {
-  __$$_PermissionDeniedCopyWithImpl(
-      _$_PermissionDenied _value, $Res Function(_$_PermissionDenied) _then)
+class __$$PermissionDeniedImplCopyWithImpl<$Res>
+    extends _$StorageFailureCopyWithImpl<$Res, _$PermissionDeniedImpl>
+    implements _$$PermissionDeniedImplCopyWith<$Res> {
+  __$$PermissionDeniedImplCopyWithImpl(_$PermissionDeniedImpl _value,
+      $Res Function(_$PermissionDeniedImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_PermissionDenied implements _PermissionDenied {
-  const _$_PermissionDenied();
+class _$PermissionDeniedImpl implements _PermissionDenied {
+  const _$PermissionDeniedImpl();
 
   @override
   String toString() {
@@ -229,9 +229,9 @@ class _$_PermissionDenied implements _PermissionDenied {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PermissionDenied);
+        (other.runtimeType == runtimeType && other is _$PermissionDeniedImpl);
   }
 
   @override
@@ -314,29 +314,29 @@ class _$_PermissionDenied implements _PermissionDenied {
 }
 
 abstract class _PermissionDenied implements StorageFailure {
-  const factory _PermissionDenied() = _$_PermissionDenied;
+  const factory _PermissionDenied() = _$PermissionDeniedImpl;
 }
 
 /// @nodoc
-abstract class _$$_PostNotFoundCopyWith<$Res> {
-  factory _$$_PostNotFoundCopyWith(
-          _$_PostNotFound value, $Res Function(_$_PostNotFound) then) =
-      __$$_PostNotFoundCopyWithImpl<$Res>;
+abstract class _$$PostNotFoundImplCopyWith<$Res> {
+  factory _$$PostNotFoundImplCopyWith(
+          _$PostNotFoundImpl value, $Res Function(_$PostNotFoundImpl) then) =
+      __$$PostNotFoundImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_PostNotFoundCopyWithImpl<$Res>
-    extends _$StorageFailureCopyWithImpl<$Res, _$_PostNotFound>
-    implements _$$_PostNotFoundCopyWith<$Res> {
-  __$$_PostNotFoundCopyWithImpl(
-      _$_PostNotFound _value, $Res Function(_$_PostNotFound) _then)
+class __$$PostNotFoundImplCopyWithImpl<$Res>
+    extends _$StorageFailureCopyWithImpl<$Res, _$PostNotFoundImpl>
+    implements _$$PostNotFoundImplCopyWith<$Res> {
+  __$$PostNotFoundImplCopyWithImpl(
+      _$PostNotFoundImpl _value, $Res Function(_$PostNotFoundImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_PostNotFound implements _PostNotFound {
-  const _$_PostNotFound();
+class _$PostNotFoundImpl implements _PostNotFound {
+  const _$PostNotFoundImpl();
 
   @override
   String toString() {
@@ -344,9 +344,9 @@ class _$_PostNotFound implements _PostNotFound {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_PostNotFound);
+        (other.runtimeType == runtimeType && other is _$PostNotFoundImpl);
   }
 
   @override
@@ -429,29 +429,31 @@ class _$_PostNotFound implements _PostNotFound {
 }
 
 abstract class _PostNotFound implements StorageFailure {
-  const factory _PostNotFound() = _$_PostNotFound;
+  const factory _PostNotFound() = _$PostNotFoundImpl;
 }
 
 /// @nodoc
-abstract class _$$_ThumbnailNotAbleToBuildCopyWith<$Res> {
-  factory _$$_ThumbnailNotAbleToBuildCopyWith(_$_ThumbnailNotAbleToBuild value,
-          $Res Function(_$_ThumbnailNotAbleToBuild) then) =
-      __$$_ThumbnailNotAbleToBuildCopyWithImpl<$Res>;
+abstract class _$$ThumbnailNotAbleToBuildImplCopyWith<$Res> {
+  factory _$$ThumbnailNotAbleToBuildImplCopyWith(
+          _$ThumbnailNotAbleToBuildImpl value,
+          $Res Function(_$ThumbnailNotAbleToBuildImpl) then) =
+      __$$ThumbnailNotAbleToBuildImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_ThumbnailNotAbleToBuildCopyWithImpl<$Res>
-    extends _$StorageFailureCopyWithImpl<$Res, _$_ThumbnailNotAbleToBuild>
-    implements _$$_ThumbnailNotAbleToBuildCopyWith<$Res> {
-  __$$_ThumbnailNotAbleToBuildCopyWithImpl(_$_ThumbnailNotAbleToBuild _value,
-      $Res Function(_$_ThumbnailNotAbleToBuild) _then)
+class __$$ThumbnailNotAbleToBuildImplCopyWithImpl<$Res>
+    extends _$StorageFailureCopyWithImpl<$Res, _$ThumbnailNotAbleToBuildImpl>
+    implements _$$ThumbnailNotAbleToBuildImplCopyWith<$Res> {
+  __$$ThumbnailNotAbleToBuildImplCopyWithImpl(
+      _$ThumbnailNotAbleToBuildImpl _value,
+      $Res Function(_$ThumbnailNotAbleToBuildImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_ThumbnailNotAbleToBuild implements _ThumbnailNotAbleToBuild {
-  const _$_ThumbnailNotAbleToBuild();
+class _$ThumbnailNotAbleToBuildImpl implements _ThumbnailNotAbleToBuild {
+  const _$ThumbnailNotAbleToBuildImpl();
 
   @override
   String toString() {
@@ -459,10 +461,10 @@ class _$_ThumbnailNotAbleToBuild implements _ThumbnailNotAbleToBuild {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThumbnailNotAbleToBuild);
+            other is _$ThumbnailNotAbleToBuildImpl);
   }
 
   @override
@@ -545,5 +547,5 @@ class _$_ThumbnailNotAbleToBuild implements _ThumbnailNotAbleToBuild {
 }
 
 abstract class _ThumbnailNotAbleToBuild implements StorageFailure {
-  const factory _ThumbnailNotAbleToBuild() = _$_ThumbnailNotAbleToBuild;
+  const factory _ThumbnailNotAbleToBuild() = _$ThumbnailNotAbleToBuildImpl;
 }

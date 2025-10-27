@@ -12,7 +12,7 @@ part of 'post_details_entity.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$PostDetailsEntity {
@@ -79,11 +79,11 @@ class _$PostDetailsEntityCopyWithImpl<$Res, $Val extends PostDetailsEntity>
 }
 
 /// @nodoc
-abstract class _$$_PostDetailsEntityCopyWith<$Res>
+abstract class _$$PostDetailsEntityImplCopyWith<$Res>
     implements $PostDetailsEntityCopyWith<$Res> {
-  factory _$$_PostDetailsEntityCopyWith(_$_PostDetailsEntity value,
-          $Res Function(_$_PostDetailsEntity) then) =
-      __$$_PostDetailsEntityCopyWithImpl<$Res>;
+  factory _$$PostDetailsEntityImplCopyWith(_$PostDetailsEntityImpl value,
+          $Res Function(_$PostDetailsEntityImpl) then) =
+      __$$PostDetailsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,11 +94,11 @@ abstract class _$$_PostDetailsEntityCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PostDetailsEntityCopyWithImpl<$Res>
-    extends _$PostDetailsEntityCopyWithImpl<$Res, _$_PostDetailsEntity>
-    implements _$$_PostDetailsEntityCopyWith<$Res> {
-  __$$_PostDetailsEntityCopyWithImpl(
-      _$_PostDetailsEntity _value, $Res Function(_$_PostDetailsEntity) _then)
+class __$$PostDetailsEntityImplCopyWithImpl<$Res>
+    extends _$PostDetailsEntityCopyWithImpl<$Res, _$PostDetailsEntityImpl>
+    implements _$$PostDetailsEntityImplCopyWith<$Res> {
+  __$$PostDetailsEntityImplCopyWithImpl(_$PostDetailsEntityImpl _value,
+      $Res Function(_$PostDetailsEntityImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$_PostDetailsEntityCopyWithImpl<$Res>
     Object? dateSorting = freezed,
     Object? limit = freezed,
   }) {
-    return _then(_$_PostDetailsEntity(
+    return _then(_$PostDetailsEntityImpl(
       postID: null == postID
           ? _value.postID
           : postID // ignore: cast_nullable_to_non_nullable
@@ -132,8 +132,8 @@ class __$$_PostDetailsEntityCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PostDetailsEntity extends _PostDetailsEntity {
-  const _$_PostDetailsEntity(
+class _$PostDetailsEntityImpl extends _PostDetailsEntity {
+  const _$PostDetailsEntityImpl(
       {required this.postID,
       this.sortByCreateAt = true,
       this.dateSorting = DateSorting.newestOnTop,
@@ -158,10 +158,10 @@ class _$_PostDetailsEntity extends _PostDetailsEntity {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PostDetailsEntity &&
+            other is _$PostDetailsEntityImpl &&
             (identical(other.postID, postID) || other.postID == postID) &&
             (identical(other.sortByCreateAt, sortByCreateAt) ||
                 other.sortByCreateAt == sortByCreateAt) &&
@@ -177,8 +177,8 @@ class _$_PostDetailsEntity extends _PostDetailsEntity {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PostDetailsEntityCopyWith<_$_PostDetailsEntity> get copyWith =>
-      __$$_PostDetailsEntityCopyWithImpl<_$_PostDetailsEntity>(
+  _$$PostDetailsEntityImplCopyWith<_$PostDetailsEntityImpl> get copyWith =>
+      __$$PostDetailsEntityImplCopyWithImpl<_$PostDetailsEntityImpl>(
           this, _$identity);
 }
 
@@ -187,7 +187,7 @@ abstract class _PostDetailsEntity extends PostDetailsEntity {
       {required final String postID,
       final bool? sortByCreateAt,
       final DateSorting? dateSorting,
-      final int? limit}) = _$_PostDetailsEntity;
+      final int? limit}) = _$PostDetailsEntityImpl;
   const _PostDetailsEntity._() : super._();
 
   @override
@@ -200,6 +200,6 @@ abstract class _PostDetailsEntity extends PostDetailsEntity {
   int? get limit;
   @override
   @JsonKey(ignore: true)
-  _$$_PostDetailsEntityCopyWith<_$_PostDetailsEntity> get copyWith =>
+  _$$PostDetailsEntityImplCopyWith<_$PostDetailsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

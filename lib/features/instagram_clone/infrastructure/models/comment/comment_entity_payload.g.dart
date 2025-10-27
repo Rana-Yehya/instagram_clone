@@ -6,9 +6,9 @@ part of 'comment_entity_payload.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CommentEntityPayload _$$_CommentEntityPayloadFromJson(
+_$CommentEntityPayloadImpl _$$CommentEntityPayloadImplFromJson(
         Map<String, dynamic> json) =>
-    _$_CommentEntityPayload(
+    _$CommentEntityPayloadImpl(
       commentID: json['commentID'] as String?,
       comment: json['comment'] as String,
       createdAt: json['created_at'] as Object,
@@ -16,8 +16,8 @@ _$_CommentEntityPayload _$$_CommentEntityPayloadFromJson(
       postID: json['postID'] as String,
     );
 
-Map<String, dynamic> _$$_CommentEntityPayloadToJson(
-        _$_CommentEntityPayload instance) =>
+Map<String, dynamic> _$$CommentEntityPayloadImplToJson(
+        _$CommentEntityPayloadImpl instance) =>
     <String, dynamic>{
       'commentID': instance.commentID,
       'comment': instance.comment,

@@ -12,7 +12,7 @@ part of 'thumbnail_request.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ThumbnailRequest {
@@ -63,22 +63,22 @@ class _$ThumbnailRequestCopyWithImpl<$Res, $Val extends ThumbnailRequest>
 }
 
 /// @nodoc
-abstract class _$$_ThumbnailRequestCopyWith<$Res>
+abstract class _$$ThumbnailRequestImplCopyWith<$Res>
     implements $ThumbnailRequestCopyWith<$Res> {
-  factory _$$_ThumbnailRequestCopyWith(
-          _$_ThumbnailRequest value, $Res Function(_$_ThumbnailRequest) then) =
-      __$$_ThumbnailRequestCopyWithImpl<$Res>;
+  factory _$$ThumbnailRequestImplCopyWith(_$ThumbnailRequestImpl value,
+          $Res Function(_$ThumbnailRequestImpl) then) =
+      __$$ThumbnailRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({File file, ImageOrVideo imageOrVideo});
 }
 
 /// @nodoc
-class __$$_ThumbnailRequestCopyWithImpl<$Res>
-    extends _$ThumbnailRequestCopyWithImpl<$Res, _$_ThumbnailRequest>
-    implements _$$_ThumbnailRequestCopyWith<$Res> {
-  __$$_ThumbnailRequestCopyWithImpl(
-      _$_ThumbnailRequest _value, $Res Function(_$_ThumbnailRequest) _then)
+class __$$ThumbnailRequestImplCopyWithImpl<$Res>
+    extends _$ThumbnailRequestCopyWithImpl<$Res, _$ThumbnailRequestImpl>
+    implements _$$ThumbnailRequestImplCopyWith<$Res> {
+  __$$ThumbnailRequestImplCopyWithImpl(_$ThumbnailRequestImpl _value,
+      $Res Function(_$ThumbnailRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_ThumbnailRequestCopyWithImpl<$Res>
     Object? file = null,
     Object? imageOrVideo = null,
   }) {
-    return _then(_$_ThumbnailRequest(
+    return _then(_$ThumbnailRequestImpl(
       file: null == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_ThumbnailRequestCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ThumbnailRequest extends _ThumbnailRequest {
-  const _$_ThumbnailRequest({required this.file, required this.imageOrVideo})
+class _$ThumbnailRequestImpl extends _ThumbnailRequest {
+  const _$ThumbnailRequestImpl({required this.file, required this.imageOrVideo})
       : super._();
 
   @override
@@ -117,10 +117,10 @@ class _$_ThumbnailRequest extends _ThumbnailRequest {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ThumbnailRequest &&
+            other is _$ThumbnailRequestImpl &&
             (identical(other.file, file) || other.file == file) &&
             (identical(other.imageOrVideo, imageOrVideo) ||
                 other.imageOrVideo == imageOrVideo));
@@ -132,14 +132,15 @@ class _$_ThumbnailRequest extends _ThumbnailRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
-      __$$_ThumbnailRequestCopyWithImpl<_$_ThumbnailRequest>(this, _$identity);
+  _$$ThumbnailRequestImplCopyWith<_$ThumbnailRequestImpl> get copyWith =>
+      __$$ThumbnailRequestImplCopyWithImpl<_$ThumbnailRequestImpl>(
+          this, _$identity);
 }
 
 abstract class _ThumbnailRequest extends ThumbnailRequest {
   const factory _ThumbnailRequest(
       {required final File file,
-      required final ImageOrVideo imageOrVideo}) = _$_ThumbnailRequest;
+      required final ImageOrVideo imageOrVideo}) = _$ThumbnailRequestImpl;
   const _ThumbnailRequest._() : super._();
 
   @override
@@ -148,6 +149,6 @@ abstract class _ThumbnailRequest extends ThumbnailRequest {
   ImageOrVideo get imageOrVideo;
   @override
   @JsonKey(ignore: true)
-  _$$_ThumbnailRequestCopyWith<_$_ThumbnailRequest> get copyWith =>
+  _$$ThumbnailRequestImplCopyWith<_$ThumbnailRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
